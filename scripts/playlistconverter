@@ -1,0 +1,2 @@
+#!/bin/bash
+cat $1 | grep Music | sed -e 's/.*D\:\\Music\\//g' | sed 's/\\/\//g' | grep -v m4p > $2

@@ -1,0 +1,59 @@
+Xft.dpi:                96
+Xft.hinting:            1
+Xft.hintstyle:          hintslight
+Xft.antialias:          1
+Xft.rgba:               rgb
+
+Xcursor.theme: Chameleon-White-Regular-0.5
+
+! rxvt-unicode
+xterm.urlLauncher: firefox
+xterm*scrollBar: False
+xterm*saveLines: 5000
+xterm*tintColor: #1e1d1f
+xterm*shading: 75
+xterm*fading: 25
+xterm*fadeColor: black
+! xterm*geometry: 114x30
+xterm*font: xft:Terminus:pixelsize=10
+! xterm*font: xft:mintmild:pixelsize=10
+! xterm*font: xft:Pragmata:pixelsize=10
+xterm*urgentOnBell: true
+! colour options
+!xterm*inheritPixmap: True
+!xterm*background:      #1e1d1f
+!xterm*foreground:      white
+
+! Zen colours
+xterm*background:  #4d4a45
+xterm*foreground:  #dcdccc
+! black + red
+xterm*color0:      #1E2320
+xterm*color1:      #705050
+! green + yellow
+xterm*color2:      #A1ECC7
+xterm*color3:      #dfaf8f
+! blue + purple
+xterm*color4:      #768491
+xterm*color5:	   #f469c8
+! cyan + white
+xterm*color6:      #01b0f3
+xterm*color7:      #dcdccc
+! bright-black + bright-red
+xterm*color8:      #709080
+xterm*color9:      #dca3a3
+! bright-green + bright-yellow
+xterm*color10:     #01b0f3
+xterm*color11:     #fef200
+! bright-blue + bright-purple
+xterm*color12:     #94bff3
+xterm*color13:     #ff0090
+! bright-cyan + bright-white
+xterm*color14:     #93e0e3
+xterm*color15:     #ffffff
+
+
+
+! xlock
+xlock*font: fixed
+xlock*mode: blank

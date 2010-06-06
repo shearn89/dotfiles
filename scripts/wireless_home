@@ -1,0 +1,15 @@
+#!/bin/bash
+# WPA wireless manual config (ubuntu style)
+# If dhclient is not on your system, change last line to "dhcpcd wlan0"
+# where wlan0 is your wireless card
+
+uid=$UID
+if [ "$uid" != "0" ]; then
+	echo "This script must be run as root."
+	exit
+else
+ ifconfig wlan0 down
+ ifconfig wlan0 up
+ wpa_supplicant -B -Dwext -iwlan0 -c/etc/wpa_supplicant.conf
+ dhclient wlan0
+fi

@@ -1,0 +1,37 @@
+set nohelp
+set autoindent
+set brackets ""')>]}"
+set casesensitive
+set const
+set cut
+set matchbrackets "(<[{)>]}"
+# set noconvert
+set nowrap
+set smarthome
+
+## Nanorc files
+include "/usr/share/nano/nanorc.nanorc"
+
+## C/C++
+include "/usr/share/nano/c.nanorc"
+
+## HTML
+include "/usr/share/nano/html.nanorc"
+
+## Patch files
+include "/usr/share/nano/patch.nanorc"
+
+## Manpages
+include "/usr/share/nano/man.nanorc"
+
+## Perl
+include "/usr/share/nano/perl.nanorc"
+
+## Python
+include "/usr/share/nano/python.nanorc"
+
+## Java
+include "/usr/share/nano/java.nanorc"
+
+## Bourne shell scripts
+include "/usr/share/nano/sh.nanorc"
