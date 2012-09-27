@@ -1,3 +1,5 @@
+call pathogen#infect() " enable pathogen
+
 filetype indent plugin on	" enable file-specific indenting/plugins
 syntax on
 set hidden			" allows to hide a buffer
