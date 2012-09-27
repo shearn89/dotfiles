@@ -2,6 +2,7 @@ call pathogen#infect() " enable pathogen
 
 filetype indent plugin on	" enable file-specific indenting/plugins
 syntax on
+
 set hidden			" allows to hide a buffer
 set backspace=indent,eol,start	" allows backspacing over indent, eol etc.
 set autoindent
@@ -38,3 +39,6 @@ imap ii <C-[>			" map 'ii' to switch from insert to cmd.
 :command Q q
 
 set nowrap			" turn off wrapping
+
+set background=light
+colorscheme solarized    " enable solarized colourscheme (pathogen bundle)
