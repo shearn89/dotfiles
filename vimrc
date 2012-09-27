@@ -1,14 +1,38 @@
-set ai
-set history=100
-set ruler
+filetype indent plugin on	" enable file-specific indenting/plugins
 syntax on
-set hlsearch
-filetype plugin on
-noremap <Up> <nop>
-noremap <Down> <nop>
-noremap <Left> <nop>
-noremap <Right> <nop>
+set hidden			" allows to hide a buffer
+set backspace=indent,eol,start	" allows backspacing over indent, eol etc.
+set autoindent
+set nostartofline		" preserve column position when moving
+set ruler			" show pos in statusline
+set laststatus=2		" make status 2 lines tall
+set confirm			" asks for confirmation if quitting with unsaved stuff
+" set visualbell		" visual bell instead of audio bell
+set number			" show line numbers
+set cul				" highlight current line
 
-set background=dark
-let g:solarized_termcolors=16
-colorscheme solarized
+" :command C let @/=""		" Use :C to clear search highlight, instead of :noh
+
+set backup			" store backups etc in 1 directory.
+set backupdir=~/.vim/backup
+set directory=~/.vim/tmp
+
+set scrolloff=5			" minimum lines between you and the top/bottom of screen
+" set ttyfast			" fast terminal
+
+set ignorecase
+set smartcase			" ignore case if all lowercase, otherwise match.
+set incsearch			" incremental search
+
+set showmatch			" flash matching brackets
+
+nore ; :			" map ; to :, saving shift-presses!
+imap ii <C-[>			" map 'ii' to switch from insert to cmd.
+
+" typo fixes:
+:command WQ wq
+:command Wq wq
+:command W w
+:command Q q
+
+set nowrap			" turn off wrapping
