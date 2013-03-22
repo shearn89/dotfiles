@@ -1,44 +1,42 @@
-call pathogen#infect() " enable pathogen
-
-filetype indent plugin on	" enable file-specific indenting/plugins
+filetype indent plugin on
 syntax on
 
-set hidden			" allows to hide a buffer
-set backspace=indent,eol,start	" allows backspacing over indent, eol etc.
+set hidden
+set backspace=indent,eol,start
 set autoindent
-set nostartofline		" preserve column position when moving
-set ruler			" show pos in statusline
-set laststatus=2		" make status 2 lines tall
-set confirm			" asks for confirmation if quitting with unsaved stuff
-" set visualbell		" visual bell instead of audio bell
-set number			" show line numbers
-set cul				" highlight current line
+set nostartofline
+set ruler
+set laststatus=2
+set confirm
+" set visualbell
+set number
+set cul
 
-" :command C let @/=""		" Use :C to clear search highlight, instead of :noh
-
-set backup			" store backups etc in 1 directory.
+set backup
 set backupdir=~/.vim/backup
 set directory=~/.vim/tmp
 
-set scrolloff=5			" minimum lines between you and the top/bottom of screen
-" set ttyfast			" fast terminal
+set scrolloff=5
+" set ttyfast
 
 set ignorecase
-set smartcase			" ignore case if all lowercase, otherwise match.
-set incsearch			" incremental search
+set smartcase
+set incsearch
 
-set showmatch			" flash matching brackets
+set showmatch
 
-nore ; :			" map ; to :, saving shift-presses!
-imap ii <C-[>			" map 'ii' to switch from insert to cmd.
+nore ; :
 
-" typo fixes:
+" typos:
 :command WQ wq
 :command Wq wq
 :command W w
 :command Q q
 
-set nowrap			" turn off wrapping
+set nowrap
+set t_Co=16
 
-set background=light
-colorscheme solarized    " enable solarized colourscheme (pathogen bundle)
+" 4 space tabs
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
