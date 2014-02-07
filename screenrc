@@ -3,26 +3,12 @@ vbell           off
 defscrollback   5000
 shell           -$SHELL
 shelltitle      sh
-autodetach      on
 altscreen on
 
 escape ``
 
-termcapinfo rxvt ti@:te@
-bindkey "^[q" prev
-bindkey "^[w" next
-
 screen -t shell 0
-screen -t shell2 1
-screen -t ssh 2
 select 0
 
 hardstatus alwayslastline
 hardstatus string '%{= KG}[%{w}%H%{G}][%{w}%=%?%-Lw%?%{G}%n*%f%t%?(%u)%? %{w}%?%+Lw%?%?%=%{G}][%{w}%m/%d %{W}%C%A%{G}'
-
-backtick 100 5 5 tail -1 /var/tmp/vermaden-stats-top
-#caption always '%{= wk} %= %100` %='
-
-shelltitle "$ | bash"
-bindkey -k k1 prev
-bindkey -k k2 next
