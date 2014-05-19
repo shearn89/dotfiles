@@ -12,9 +12,9 @@ set confirm
 set number
 set cul
 
-set backup
-set backupdir=~/.vim/backup
-set directory=~/.vim/tmp
+" set backup
+" set backupdir=~/.vim/backup
+" set directory=~/.vim/tmp
 
 set scrolloff=5
 " set ttyfast
