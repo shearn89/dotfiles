@@ -1,0 +1,63 @@
+own_window yes
+own_window_class Conky
+own_window_type override
+own_window_transparent yes
+background no
+
+maximum_width 200
+maximum_size 200
+minimum_size 5 5
+alignment top_right
+gap_x 5
+gap_y 5
+
+
+border_width 0
+cpu_avg_samples 2
+default_color color1
+draw_graph_borders yes
+draw_borders no
+draw_outline no
+draw_shades no
+
+use_xft yes
+xftfont 123:size=8
+
+net_avg_samples 2
+no_buffers yes
+out_to_console no
+out_to_stderr no
+extra_newline no
+stippled_borders 0
+update_interval 1.0
+uppercase no
+use_spacer none
+show_graph_scale no
+show_graph_range no
+
+TEXT
+${font Arial:bold:size=10}${color Tan1}SYSTEM ${color white}$hr${color DarkSlateGrey}$font
+Host:		$alignr$nodename
+Running:	$alignr$kernel
+Uptime:		$alignr$uptime
+${font Arial:bold:size=10}${color Tan1}RESOURCES ${color white}$hr${color DarkSlateGrey}$font
+RAM Usage:	$alignr$mem/$memmax
+$memperc% ${membar 4}
+Swap Usage:	$alignr$swap/$swapmax
+$swapperc% ${swapbar 4}
+CPU Usage:
+$cpu% ${cpubar 4}
+${font Arial:bold:size=10}${color Tan1}DISKS ${color white}$hr${color DarkSlateGrey}$font
+ /		$alignr${fs_used /}/${fs_size /}
+${fs_bar 6 /}
+${font Arial:bold:size=10}${color Tan1}NETWORK ${color white}$hr${color DarkSlateGrey}$font
+Up:		$alignr${upspeed p2p1}
+Down:	$alignr${downspeed p2p1}
+IP:		$alignr${addr p2p1}
+${font Arial:bold:size=10}${color Tan1}POWER ${color white}$hr${color DarkSlateGrey}$font
+${battery_short BAT1}:	$alignr${battery_time BAT1}
+${battery_bar BAT1}
+${font Arial:bold:size=10}${color Tan1}TIME ${color white}$hr${color DarkSlateGrey}$font
+${font :size=30}$alignc${time %H:%M}
+${voffset -30}${font :bold:size=10}$alignc${time %d %b. %Y}
+${font :bold:size=8}$alignc${time %A}
