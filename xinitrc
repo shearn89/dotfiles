@@ -1,4 +1,6 @@
-gnome-settings-daemon &
-xrdb -merge .Xdefaults &
+#!/bin/sh
+xrdb ~/.Xresources
 
-exec awesome
+sh ~/.fehbg &
+conky &
+exec i3

@@ -40,3 +40,11 @@ set t_Co=16
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+
+syntax enable
+if has('gui_running')
+	set background=light
+else
+	set background=dark
+endif
+colorschem solarized

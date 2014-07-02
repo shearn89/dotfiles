@@ -12,10 +12,10 @@ fi
 # User specific aliases and functions
 HISTCONTROL=ignoreboth
 EDITOR=vim
+TERMINAL=xterm
 
 export PS1='[\h:\W]\$ '
-
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # Set flags
-set -o vi
+# set -o vi
