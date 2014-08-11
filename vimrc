@@ -18,7 +18,8 @@ set ruler
 set laststatus=2
 set confirm
 set number
-set cul
+set lazyredraw
+" set cul
 
 " scroll screen when we get to the bottom 5 lines
 set scrolloff=5
