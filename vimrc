@@ -1,3 +1,7 @@
+" @tpope's totally badass runtime management engine
+execute pathogen#infect()
+
+" Now we override stuff:
 " Syntax highlighting, indentation by filetype
 filetype indent plugin on
 syntax on
@@ -13,7 +17,6 @@ set nostartofline
 set ruler
 set laststatus=2
 set confirm
-" set visualbell
 set number
 set cul
 
@@ -39,18 +42,38 @@ nore ; :
 set nowrap
 set t_Co=16
 
+"" Tabs and space stuff
 " 4 space tabs
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set tabstop=4 shiftwidth=4 softtabstop=4
+" convert spaces to tabs when reading file
+autocmd! bufreadpost * set noexpandtab | retab! 4
+" convert tabs to spaces before writing file
+autocmd! bufwritepre * set expandtab | retab! 4
+" convert spaces to tabs after writing file (to show guides again)
+autocmd! bufwritepost * set noexpandtab | retab! 4
 
 " plugin shizzle.
 syntax enable
 if has('gui_running')
-	set background=light
+    set background=light
 else
-	set background=dark
+    set background=dark
 endif
 colorscheme solarized
 
-execute pathogen#infect()
+" badass statusline
+set statusline=%t       "tail of the filename
+set statusline+=\ [%{strlen(&fenc)?&fenc:'none'}, "file encoding
+set statusline+=%{&ff}] "file format
+set statusline+=%h      "help file flag
+set statusline+=%m      "modified flag
+set statusline+=%r      "read only flag
+set statusline+=%y      "filetype
+set statusline+=%=      "left/right separator
+set statusline+=%c,     "cursor column
+set statusline+=%l/%L   "cursor line/total lines
+set statusline+=\ %P    "percent through file
+set statusline+=\ %{fugitive#statusline()}  " vim-fugitive git status
+
+" load tags files up to root
+set tags=./tags;/
