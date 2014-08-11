@@ -3,6 +3,7 @@ own_window_class Conky
 own_window_type override
 own_window_transparent yes
 background no
+double_buffer yes
 
 maximum_width 200
 maximum_size 200
@@ -43,8 +44,6 @@ Uptime:		$alignr$uptime
 ${font Arial:bold:size=10}${color Tan1}RESOURCES ${color white}$hr${color DarkSlateGrey}$font
 RAM Usage:	$alignr$mem/$memmax
 $memperc% ${membar 4}
-Swap Usage:	$alignr$swap/$swapmax
-$swapperc% ${swapbar 4}
 CPU Usage:
 $cpu% ${cpubar 4}
 ${font Arial:bold:size=10}${color Tan1}DISKS ${color white}$hr${color DarkSlateGrey}$font

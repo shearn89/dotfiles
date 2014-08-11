@@ -15,7 +15,11 @@ EDITOR=vim
 TERMINAL=xterm
 
 export PS1='[\h:\W]\$ '
+
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="/opt/apache-maven-3.2.2/bin:$PATH"
+
+export JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64"
 
 # Set flags
 # set -o vi
