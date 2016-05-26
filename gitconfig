@@ -1,4 +1,15 @@
-[color]
-	ui = auto
 [core]
-	excludesfile = /Users/shearn89/.gitignore_global
+	excludesfile = ~/.gitignore_global
+[user]
+	email = alexander.shearn@gmail.com
+	name = shearna
+[push]
+	default = current
+[alias]
+	slog = log --pretty=oneline --abbrev=commit
+[merge]
+	ff = false
+[fetch]
+	prune = true
+[pull]
+	rebase = true

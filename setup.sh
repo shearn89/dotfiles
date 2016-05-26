@@ -23,3 +23,4 @@ git clone tpope/vim-surround
 git clone tpope/vim-characterize
 git clone tpope/vim-commentary
 git clone tpope/vim-abolish
+git clone altercation/vim-colors-solarized
