@@ -20,12 +20,15 @@ colorscheme solarized
 
 " spacing
 set et
-set sw=4
-set sts=4
+set sw=2
+set sts=2
 
 " where are we?
 set number
 set ruler
+
+" remove silly tablimit
+set tabpagemax=100
 
 " badass statusline
 set statusline=%t       "tail of the filename

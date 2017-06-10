@@ -24,3 +24,9 @@ git clone tpope/vim-characterize
 git clone tpope/vim-commentary
 git clone tpope/vim-abolish
 git clone altercation/vim-colors-solarized
+
+mkdir -p ~/repos ~/source
+cd ~/source
+git clone Anthony25/gnome-terminal-colors-solarized
+git clone seebi/dircolors-solarized
+
