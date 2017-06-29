@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Install vim
-apt install vim
+sudo apt install vim
 
 # Install git
-apt install git
+sudo apt install git
 
 # Install hub
 xdg-open https://github.com/github/hub/releases/latest
