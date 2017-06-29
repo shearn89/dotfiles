@@ -15,8 +15,8 @@ set showmatch
 set scrolloff=5
 
 " theme
-set background=dark
-colorscheme solarized
+" set background=dark
+" colorscheme solarized
 
 " spacing
 set et
@@ -26,6 +26,7 @@ set sts=2
 " where are we?
 set number
 set ruler
+set cul
 
 " remove silly tablimit
 set tabpagemax=100
