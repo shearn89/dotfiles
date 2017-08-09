@@ -1,0 +1,35 @@
+alias cdt='cd `git rev-parse --show-toplevel`'
+alias gst='git status '
+alias gc='git commit '
+alias gl='git pull '
+alias gp='git push '
+alias ga='git add '
+alias gfa='git fetch --all '
+
+alias vim='vim -p '
+
+alias sizes='du -sh * | sort --human-numeric'
+
+
+function findextgrep () {
+  if [[ -z $1 ]]
+  then
+    echo 'must provide search path'
+    return 1
+  fi
+
+  if [[ -z $2 ]]
+  then
+    echo 'must provide extension'
+    return 1
+  fi
+
+  if [[ -z $3 ]]
+  then
+    echo 'must provide search string'
+    return 1
+  fi
+
+  find $1 -iname "${2}" -exec grep -H -i $3 {} \;
+}
+
