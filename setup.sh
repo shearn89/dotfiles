@@ -1,10 +1,11 @@
 #!/bin/bash
 
-# Install vim
-sudo apt install vim
-
-# Install git
-sudo apt install git
+if [[ -f /etc/redhat-release ]]
+then
+  sudo yum install -y vim git
+else
+  sudo apt install vim git -y
+fi
 
 # Install pathogen
 mkdir -p ~/.vim/autoload ~/.vim/bundle && \
