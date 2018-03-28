@@ -8,6 +8,9 @@
 - name: set up vim
   import_tasks: vim.yml
 
+- name: clone repos
+  import_tasks: repos.yml
+
 - name: set up rvm
   import_role: 
     role: rvm_io.ruby

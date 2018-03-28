@@ -1,0 +1,18 @@
+---
+- name: create folders
+  file:
+    path: "{{ item }}"
+    mode: '0755'
+    state: 'directory'
+  with_items:
+    - "~/repos"
+    - "~/source"
+
+- name: clone essential repos
+  git:
+    repo: "{{ item.url }}"
+    dest: "{{ item.path }}"
+    update: yes
+  loop:
+    - { url: "https://github.com/Anthony25/gnome-terminal-colors-solarized", path: "~/source/gnome-terminal-colors-solarized" }
+    - { url: "https://github.com/seebi/dircolors-solarized", path: "~/source/dircolors-solarized" }
