@@ -1,5 +1,6 @@
 ---
 - name: install packages
+  become: True
   import_tasks: packages.yml
 
 - name: set up dotfiles
@@ -12,6 +13,7 @@
   import_tasks: repos.yml
 
 - name: set up rvm
+  become: True
   import_role: 
     role: rvm_io.ruby
   vars:
