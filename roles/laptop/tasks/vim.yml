@@ -10,7 +10,7 @@
 
 - name: download pathogen
   get_url:
-    dest: "~/.vim/autoload/pathogem.vim"
+    dest: "~/.vim/autoload/pathogen.vim"
     url: "https://tpo.pe/pathogen.vim"
 
 - name: clone vim plugins
