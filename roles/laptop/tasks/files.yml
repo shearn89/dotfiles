@@ -1,0 +1,11 @@
+---
+- name: copy files into place
+  copy:
+    src: "files/{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - { src: 'vimrc', dest: '~/.vimrc' }
+    - { src: 'bash_aliases', dest: '~/.bash_aliases' }
+    - { src: 'profile', dest: '~/.profile' }
+    - { src: 'gemrc', dest: '~/.gemrc' }
+    - { src: 'tmux.conf', dest: '~/.tmux.conf' }

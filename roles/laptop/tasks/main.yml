@@ -1,0 +1,18 @@
+---
+- name: install packages
+  import_tasks: packages.yml
+
+- name: set up dotfiles
+  import_tasks: files.yml
+
+- name: set up vim
+  import_tasks: vim.yml
+
+- name: set up rvm
+  import_role: 
+    role: rvm_io.ruby
+  vars:
+    rvm1_rubies: ['ruby-2.1.10']
+    rvm1_install_flags: ''
+    rvm1_install_path: '/usr/local/rvm'
+    rvm1_user: 'root'

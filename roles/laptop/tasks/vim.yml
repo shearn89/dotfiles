@@ -1,0 +1,30 @@
+---
+- name: create vim plugin folders
+  file:
+    path: "{{ item }}"
+    mode: '0755'
+    state: 'directory'
+  with_items:
+    - "~/.vim/autoload"
+    - "~/.vim/bundle"
+
+- name: download pathogen
+  get_url:
+    dest: "~/.vim/autoload/pathogem.vim"
+    url: "https://tpo.pe/pathogen.vim"
+
+- name: clone vim plugins
+  git:
+    repo: "{{ item.url }}"
+    dest: "{{ item.path }}"
+    update: yes
+  loop:
+    - { url: "https://github.com/tpope/vim-sensible.git", path: "~/vim/bundle/vim-sensible" }
+    - { url: "https://github.com/tpope/vim-unimpaired.git", path: "~/vim/bundle/vim-unimpaired" }
+    - { url: "https://github.com/tpope/vim-markdown.git", path: "~/vim/bundle/vim-markdown" }
+    - { url: "https://github.com/tpope/vim-surround.git", path: "~/vim/bundle/vim-surround" }
+    - { url: "https://github.com/tpope/vim-characterize.git", path: "~/vim/bundle/vim-characterize" }
+    - { url: "https://github.com/tpope/vim-commentary.git", path: "~/vim/bundle/vim-commentary" }
+    - { url: "https://github.com/tpope/vim-abolish.git", path: "~/vim/bundle/vim-abolish" }
+    - { url: "https://github.com/rodjek/vim-puppet.git", path: "~/vim/bundle/vim-puppet" }
+    - { url: "https://github.com/altercation/vim-colors-solarized.git", path: "~/vim/bundle/vim-colors-solarized" }

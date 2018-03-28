@@ -1,0 +1,78 @@
+---
+  - name: install essential base packages
+    package:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - vim
+      - git
+      - tree
+      - jq
+      - curl
+      - build-essential
+      - apt-transport-https
+      - ca-certificates
+      - software-properties-common
+
+  - name: add docker gpg key
+    apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      id: 0EBFCD88
+      state: present
+
+  - name: add virtualbox gpg key
+    apt_key:
+      url: https://www.virtualbox.org/download/oracle_vbox_2016.asc 
+      id: 2980AECF
+      state: present
+
+  - name: add google gpg key
+    apt_key:
+      url: https://dl.google.com/linux/linux_signing_key.pub
+      id: 7FAC5991
+      state: present
+
+  - name: add puppetlabs gpg key
+    apt_key:
+      url: https://apt.puppetlabs.com/DEB-GPG-KEY-puppet
+      id: EF8D349F
+      state: present
+
+#  - name: add hashicorp gpg key
+#    apt_key:
+#      id: 51852D87348FFC4C
+#      state: present
+
+  - name: add docker repo
+    apt_repository:
+      repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release | lower }} stable"
+      state: present
+
+  - name: add virtualbox repo
+    apt_repository:
+      repo: "deb https://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release | lower }} contrib"
+      state: present
+
+  - name: add google repo
+    apt_repository:
+      repo: "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
+      state: present
+
+  - name: add puppet repo
+    apt_repository:
+      repo: "deb [arch=amd64] http://apt.puppetlabs.com/ {{ ansible_distribution_release | lower }} PC1"
+      state: present
+
+#  - name: add unofficial vagrant repo
+#    apt_repository:
+#      repo: "deb https://vagrant-deb.linestarve.com/ any main"
+#      state: present
+
+  - name: install non-standard packages
+    action: >
+      {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
+    with_items:
+      - docker-ce
+      - virtualbox-5.2
+      - google-chrome-stable
+      - puppet-agent
