@@ -10,6 +10,8 @@ alias vim='vim -p '
 
 alias sizes='du -sh * | sort --human-numeric'
 
+alias bert='bundle exec rake test '
+alias bip='bundle install --path=vendor/bundle '
 
 function findextgrep () {
   if [[ -z $1 ]]
