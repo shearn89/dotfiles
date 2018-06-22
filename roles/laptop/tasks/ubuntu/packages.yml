@@ -4,7 +4,9 @@
       name: "{{ item }}"
       state: present
     with_items:
-      - vim
+      - python3-neovim
+      - python-neovim
+      - neovim
       - git
       - tree
       - jq

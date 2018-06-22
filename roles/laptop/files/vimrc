@@ -1,20 +1,24 @@
 call plug#begin()
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-git'
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-unimpaired'
-Plug 'itchyny/lightline.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/nerdtree'
-Plug 'altercation/vim-colors-solarized'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+  Plug 'tpope/vim-endwise'
+  Plug 'tpope/vim-git'
+  Plug 'tpope/vim-sensible'
+  Plug 'tpope/vim-unimpaired'
+  Plug 'tpope/vim-markdown'
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-characterize'
+  Plug 'rodjek/vim-puppet'
+  Plug 'itchyny/lightline.vim'
+  Plug 'tpope/vim-fugitive'
+  Plug 'altercation/vim-colors-solarized'
+  Plug 'scrooloose/nerdtree'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+  if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+  endif
 call plug#end()
 
 " Configure plugins for tab completion and status bar
