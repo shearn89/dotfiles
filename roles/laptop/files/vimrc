@@ -1,46 +1,79 @@
-execute pathogen#infect()
+call plug#begin()
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-git'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-unimpaired'
+Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/nerdtree'
+Plug 'altercation/vim-colors-solarized'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+call plug#end()
 
-syntax enable
+" Configure plugins for tab completion and status bar
+let g:deoplete#enable_at_startup = 1
+let g:lightline = {
+	\ 'component': {
+	\   'lineinfo': ' %3l:%-2v',
+	\ },
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ],
+        \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+        \ },
+	\ 'component_function': {
+	\   'readonly': 'LightlineReadonly',
+	\   'fugitive': 'LightlineFugitive'
+	\ },
+	\ 'separator': { 'left': '', 'right': '' },
+	\ 'subseparator': { 'left': '', 'right': '' }
+	\ }
+
+" Custom functions for statusbar
+function! LightlineReadonly()
+	return &readonly ? '' : ''
+endfunction
+function! LightlineFugitive()
+	if exists('*fugitive#head')
+		let branch = fugitive#head()
+		return branch !=# '' ? ' '.branch : ''
+	endif
+	return ''
+endfunction
+
+" Basic stuff
+syntax on
+set background=dark
+colorscheme solarized
+
 filetype plugin indent on
+set autoindent
 
-" case-sens search off, unless we search for something with caps specifically.
-set ignorecase
-set smartcase
-set incsearch
+set cul
+set ruler
+set number
 
-" highlight matches. Do ':set noh' to hide.
-set showmatch
+set sts=2 sw=2 et
 
-" scroll screen when we get to the bottom 5 lines
 set scrolloff=5
 
-" theme
-" set background=dark
-" colorscheme solarized
+set splitbelow
+set splitright
 
-" spacing
-set et
-set sw=2
-set sts=2
+" normal mode remaps
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
-" where are we?
-set number
-set ruler
-set cul
-
-" remove silly tablimit
-set tabpagemax=100
-
-" badass statusline
-set statusline=%t       "tail of the filename
-set statusline+=\ [%{strlen(&fenc)?&fenc:'none'}, "file encoding
-set statusline+=%{&ff}] "file format
-set statusline+=%h      "help file flag
-set statusline+=%m      "modified flag
-set statusline+=%r      "read only flag
-set statusline+=%y      "filetype
-set statusline+=%=      "left/right separator
-set statusline+=%c,     "cursor column
-set statusline+=%l/%L   "cursor line/total lines
-set statusline+=\ %P    "percent through file
-
+" Run nerdtree, make it non-focussed and then close if it's the only thing
+" open
+autocmd vimenter * NERDTree
+autocmd vimenter * wincmd l
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
