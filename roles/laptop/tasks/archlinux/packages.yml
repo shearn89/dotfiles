@@ -1,0 +1,39 @@
+---
+  - name: install yay from AUR
+
+
+  - name: install essential base packages
+    package:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - python2-neovim
+      - python-neovim
+      - neovim
+      - git
+      - tree
+      - jq
+      - curl
+      - build-devel
+      - xorg
+      - slim
+      - dwm
+      - slstatus-git
+      - wget
+      - python3
+      - python2
+      - compton
+      - feh
+      - dmenu
+      - st-solarized
+      - tar
+      - xz
+      - gzip2
+      - tmux
+      - bash-completion
+      - ruby
+      - rubygems
+      - nodejs
+      - npm
+      - xclip
+      - xsel
