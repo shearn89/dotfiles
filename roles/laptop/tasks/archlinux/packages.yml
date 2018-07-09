@@ -1,31 +1,31 @@
 ---
-  - name: install yay from AUR
+  - name: create source directory
+    file:
+      path: "~/source"
+      mode: '0755'
+      state: 'directory'
 
+  - name: clone yay from AUR
+    git:
+      repo: "https://aur.archlinux.org/yay.git"
+      dest: "~/source/yay"
+      update: yes
 
   - name: install essential base packages
     package:
       name: "{{ item }}"
       state: present
     with_items:
-      - python2-neovim
-      - python-neovim
-      - neovim
+      - build-devel
+      - xorg
       - git
       - tree
       - jq
       - curl
-      - build-devel
-      - xorg
-      - slim
-      - dwm
-      - slstatus-git
-      - wget
       - python3
       - python2
-      - compton
-      - feh
-      - dmenu
-      - st-solarized
+      - slim
+      - wget
       - tar
       - xz
       - gzip2
@@ -37,3 +37,24 @@
       - npm
       - xclip
       - xsel
+      - python2-neovim
+      - python-neovim
+      - neovim
+
+  - name: install yay
+    command: "makepkg -si"
+    args:
+      chdir: "~/source/yay"
+      creates: "/usr/local/bin/yay"
+
+  - name: install extra packages
+    package:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - slstatus-git
+      - dmenu
+      - dwm
+      - compton
+      - feh
+      - st-solarized
