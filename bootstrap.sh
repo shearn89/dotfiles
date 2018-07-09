@@ -7,6 +7,10 @@ then
   # RedHat, set up ansible RPM repo
   sudo yum upgrade -y 
   sudo yum install -y ansible openssh-server
+elif [[ -f /etc/os-release ]]
+then
+  sudo pacman -Syu --noconfirm
+  sudo pacman -Sy --noconfirm python ansible openssh
 else
   # Debian, set up ansible DEB repo
   sudo apt-get update -y

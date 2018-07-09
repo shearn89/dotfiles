@@ -11,12 +11,12 @@
 - name: clone repos
   import_tasks: repos.yml
 
-  # - name: set up rvm
-  #   become: True
-  #   import_role: 
-  #     role: rvm_io.ruby
-  #   vars:
-  #     rvm1_rubies: ['ruby-2.1.10']
-  #     rvm1_install_flags: ''
-  #     rvm1_install_path: '/usr/local/rvm'
-  #     rvm1_user: 'root'
+- name: set up rvm
+  become: True
+  import_role: 
+    role: rvm_io.ruby
+  vars:
+    rvm1_rubies: ['ruby-2.1.10']
+    rvm1_install_flags: ''
+    rvm1_install_path: '/usr/local/rvm'
+    rvm1_user: 'root'
