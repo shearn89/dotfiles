@@ -19,7 +19,6 @@
       - curl
       - python3
       - python2
-      - slim
       - wget
       - tar
       - xz
@@ -38,6 +37,10 @@
       - dmenu
       - compton
       - feh
+      - lightdm
+      - clamav
+      - docker
+      - adobe-source-code-pro-fonts
 
   - name: clone yay from AUR
     git:
@@ -64,3 +67,5 @@
         binary: st
       - name: vivaldi
         binary: vivaldi-stable
+      - name: code
+        binary: code

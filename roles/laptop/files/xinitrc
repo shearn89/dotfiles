@@ -1,0 +1,6 @@
+# xsidle.sh slock &
+./.fehbg &
+compton &
+slstatus &
+
+exec dwm

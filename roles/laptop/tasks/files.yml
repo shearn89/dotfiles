@@ -9,6 +9,9 @@
     - { src: 'profile', dest: '~/.profile' }
     - { src: 'gemrc', dest: '~/.gemrc' }
     - { src: 'tmux.conf', dest: '~/.tmux.conf' }
+    - { src: 'xinitrc', dest: '~/.xinitrc' }
+    - { src: 'Xmodmap', dest: '~/.Xmodmap' }
+    - { src: 'vscode-extensions', dest: '~/vscode-extensions' }
 
 - name: remove bash_profile
   file:
