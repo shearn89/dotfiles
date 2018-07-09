@@ -1,3 +1,6 @@
+alias ls='ls --color=auto'
+alias ll='ls -l'
+
 alias cdt='cd `git rev-parse --show-toplevel`'
 alias gst='git status '
 alias gc='git commit '
@@ -6,7 +9,12 @@ alias gp='git push '
 alias ga='git add '
 alias gfa='git fetch --all '
 
-alias vim='vim -p '
+if [[ -f /usr/bin/nvim ]]
+then
+  alias vim='nvim -p '
+else 
+  alias vim='vim -p '
+fi
 
 alias sizes='du -sh * | sort --human-numeric'
 

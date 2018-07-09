@@ -6,15 +6,37 @@
     state: 'directory'
   with_items:
     - "~/.local/share/nvim/site/autoload/"
+    - "~/.config/nvim"
+
+- name: create nvim config
+  copy:
+    src: "files/vimrc"
+    dest: "~/.config/nvim/init.vim"
 
 - name: set symlink for neovim config
   file:
-    path: "~/.config/nvim/init.vim"
-    dest: "~/.vimrc"
+    path: "~/.vimrc"
+    src: "~/.config/nvim/init.vim"
     mode: "0644"
     state: link
+    force: true
 
 - name: download vim-plug
   get_url:
     dest: "~/.local/share/nvim/site/autoload/plug.vim"
     url: "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+
+- name: install nvim plugins
+  command: "nvim --headless +'PlugInstall' +qa"
+
+- name: install neovim node provider
+  become: True
+  npm:
+    name: neovim
+    global: yes
+
+- name: install neovim ruby provider
+  gem:
+    name: neovim
+    state: present
+

@@ -1,5 +1,5 @@
 ---
-  - name: install essential base packages
+  - name: install essential ubuntu base packages
     package:
       name: "{{ item }}"
       state: present
@@ -16,25 +16,25 @@
       - ca-certificates
       - software-properties-common
 
-  - name: add docker gpg key
+  - name: add docker ubuntu gpg key
     apt_key:
       url: https://download.docker.com/linux/ubuntu/gpg
       id: 0EBFCD88
       state: present
 
-  - name: add virtualbox gpg key
+  - name: add virtualbox ubuntu gpg key
     apt_key:
       url: https://www.virtualbox.org/download/oracle_vbox_2016.asc 
       id: 2980AECF
       state: present
 
-  - name: add google gpg key
+  - name: add google ubuntu gpg key
     apt_key:
       url: https://dl.google.com/linux/linux_signing_key.pub
       id: 7FAC5991
       state: present
 
-  - name: add puppetlabs gpg key
+  - name: add puppetlabs ubuntu gpg key
     apt_key:
       url: https://apt.puppetlabs.com/DEB-GPG-KEY-puppet
       id: EF8D349F
@@ -45,22 +45,22 @@
 #      id: 51852D87348FFC4C
 #      state: present
 
-  - name: add docker repo
+  - name: add docker ubuntu repo
     apt_repository:
       repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release | lower }} stable"
       state: present
 
-  - name: add virtualbox repo
+  - name: add virtualbox ubuntu repo
     apt_repository:
       repo: "deb https://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release | lower }} contrib"
       state: present
 
-  - name: add google repo
+  - name: add google ubuntu repo
     apt_repository:
       repo: "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
       state: present
 
-  - name: add puppet repo
+  - name: add puppet ubuntu repo
     apt_repository:
       repo: "deb [arch=amd64] http://apt.puppetlabs.com/ {{ ansible_distribution_release | lower }} PC1"
       state: present
@@ -70,7 +70,7 @@
 #      repo: "deb https://vagrant-deb.linestarve.com/ any main"
 #      state: present
 
-  - name: install non-standard packages
+  - name: install non-standard ubuntu packages
     action: >
       {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
     with_items:

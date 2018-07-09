@@ -5,18 +5,13 @@
       mode: '0755'
       state: 'directory'
 
-  - name: clone yay from AUR
-    git:
-      repo: "https://aur.archlinux.org/yay.git"
-      dest: "~/source/yay"
-      update: yes
-
-  - name: install essential base packages
+  - name: install essential archlinux base packages
+    become: True
     package:
       name: "{{ item }}"
       state: present
     with_items:
-      - build-devel
+      - base-devel
       - xorg
       - git
       - tree
@@ -28,7 +23,7 @@
       - wget
       - tar
       - xz
-      - gzip2
+      - pigz
       - tmux
       - bash-completion
       - ruby
@@ -40,21 +35,32 @@
       - python2-neovim
       - python-neovim
       - neovim
-
-  - name: install yay
-    command: "makepkg -si"
-    args:
-      chdir: "~/source/yay"
-      creates: "/usr/local/bin/yay"
-
-  - name: install extra packages
-    package:
-      name: "{{ item }}"
-      state: present
-    with_items:
-      - slstatus-git
       - dmenu
-      - dwm
       - compton
       - feh
-      - st-solarized
+
+  - name: clone yay from AUR
+    git:
+      repo: "https://aur.archlinux.org/yay.git"
+      dest: "~/source/yay"
+      update: yes
+
+  - name: install yay on archlinux
+    command: "makepkg -si --noconfirm --noprogressbar"
+    args:
+      chdir: "~/source/yay"
+      creates: "/usr/bin/yay"
+
+  - name: install extra archlinux packages
+    command: "yay -Sy --noconfirm {{ item.name }}"
+    args:
+      creates: "/usr/bin/{{ item.binary }}"
+    with_items:
+      - name: slstatus-git
+        binary: slstatus
+      - name: dwm
+        binary: dwm
+      - name: st-solarized
+        binary: st
+      - name: vivaldi
+        binary: vivaldi-stable

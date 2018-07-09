@@ -4,9 +4,13 @@
     src: "files/{{ item.src }}"
     dest: "{{ item.dest }}"
   with_items:
-    - { src: 'vimrc', dest: '~/.vimrc' }
     - { src: 'bashrc', dest: '~/.bashrc' }
     - { src: 'bash_aliases', dest: '~/.bash_aliases' }
     - { src: 'profile', dest: '~/.profile' }
     - { src: 'gemrc', dest: '~/.gemrc' }
     - { src: 'tmux.conf', dest: '~/.tmux.conf' }
+
+- name: remove bash_profile
+  file:
+    path: "~/.bash_profile"
+    state: "absent"

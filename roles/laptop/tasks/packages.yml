@@ -1,5 +1,6 @@
 ---
   - import_tasks: tasks/ubuntu/packages.yml
+    become: True
     when: ansible_os_family == 'Debian'
   - import_tasks: tasks/archlinux/packages.yml
     when: ansible_os_family == 'Archlinux'
