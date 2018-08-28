@@ -1,7 +1,6 @@
 alias ls='ls --color=auto'
 alias ll='ls -l'
 
-alias cdt='cd `git rev-parse --show-toplevel`'
 alias gst='git status '
 alias gc='git commit '
 alias gl='git pull '
@@ -20,6 +19,9 @@ alias sizes='du -sh * | sort --human-numeric'
 
 alias bert='bundle exec rake test '
 alias bip='bundle install --path=vendor/bundle '
+
+alias feh='feh --auto-rotate -P '
+alias show_photos='feh -. --auto-rotate -F -B black -P -Y ./'
 
 function findextgrep () {
   if [[ -z $1 ]]
@@ -43,3 +45,27 @@ function findextgrep () {
   find $1 -iname "${2}" -exec grep -H -i $3 {} \;
 }
 
+gr () {
+  directory=$(git rev-parse --show-cdup --no-revs HEAD)
+  if [ -z $directory ]
+  then
+    directory=$(basename $(pwd))
+  else
+    cd $directory
+  fi
+  name=$(basename $directory)
+  describe=$(git rev-parse --short HEAD)
+  git archive --prefix=$name/ -o $name-$describe.tar.gz HEAD ./
+}
+
+cdt (){
+  directory=$(git rev-parse --show-cdup --no-revs HEAD)
+  if [ ! -z $directory ]
+  then
+    cd $directory
+  fi
+}
+
+burndisk () {
+  sudo wodim -eject -tao speed=2 dev=/dev/sr0 -v -data $1
+}
