@@ -54,7 +54,7 @@ gr () {
     cd $directory
   fi
   name=$(basename $directory)
-  describe=$(git rev-parse --short HEAD)
+  describe=$(git describe --tags 2>/dev/null || git rev-parse --short HEAD)
   git archive --prefix=$name/ -o $name-$describe.tar.gz HEAD ./
 }
 
