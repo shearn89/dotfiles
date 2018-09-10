@@ -27,7 +27,7 @@
       - bash-completion
       - ruby
       - rubygems
-      - nodejs
+      - nodejs-lts-carbon
       - npm
       - xclip
       - xsel
@@ -67,5 +67,5 @@
         binary: st
       - name: vivaldi
         binary: vivaldi-stable
-      - name: code
-        binary: code
+    # - name: code
+    #   binary: code
