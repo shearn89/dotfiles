@@ -10,15 +10,16 @@ call plug#begin()
   Plug 'itchyny/lightline.vim'
   Plug 'tpope/vim-fugitive'
   Plug 'altercation/vim-colors-solarized'
-  Plug 'scrooloose/nerdtree'
-  Plug 'Xuyuanp/nerdtree-git-plugin'
+  " Plug 'scrooloose/nerdtree'
+  " Plug 'Xuyuanp/nerdtree-git-plugin'
   if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins', 'tag': '4.1' }
   else
     Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
+  " Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 " Configure plugins for tab completion and status bar
@@ -35,8 +36,8 @@ let g:lightline = {
 	\   'readonly': 'LightlineReadonly',
 	\   'fugitive': 'LightlineFugitive'
 	\ },
-	\ 'separator': { 'left': '', 'right': '' },
-	\ 'subseparator': { 'left': '', 'right': '' }
+        \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+        \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
 	\ }
 
 " Custom functions for statusbar
@@ -70,6 +71,10 @@ set scrolloff=5
 set splitbelow
 set splitright
 
+set noshowmode
+"" not needed in nvim
+" set encoding=UTF-8
+
 " normal mode remaps
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -78,6 +83,70 @@ nnoremap <C-H> <C-W><C-H>
 
 " Run nerdtree, make it non-focussed and then close if it's the only thing
 " open
-autocmd vimenter * NERDTree
-autocmd vimenter * wincmd l
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"autocmd vimenter * NERDTree
+"autocmd vimenter * wincmd l
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Stolen from https://github.com/Libbum/dotfiles/blob/master/vimrc
+function Keyboard(type)
+   if a:type == "workman"
+      "(O)pen line -> (L)ine
+      noremap l o
+      noremap o l
+      noremap L O
+      noremap O L
+      "Search (N)ext -> (J)ump
+      noremap j n
+      noremap n j
+      noremap J N
+      noremap N J
+      "(E)nd of word -> brea(K) of word
+      noremap k e
+      noremap e k
+      noremap K E
+      noremap E <nop>
+      noremap h y
+      "(Y)ank -> (H)aul
+      noremap y h
+      noremap H Y
+      noremap Y H
+   else " qwerty
+      call UnmapWorkman()
+   endif
+endfunction
+
+function UnmapWorkman()
+    "Unmaps Workman keys
+    silent! unmap h
+    silent! unmap j
+    silent! unmap k
+    silent! unmap l
+    silent! unmap y
+    silent! unmap n
+    silent! unmap e
+    silent! unmap o
+    silent! unmap H
+    silent! unmap J
+    silent! unmap K
+    silent! unmap L
+    silent! unmap Y
+    silent! unmap N
+    silent! unmap E
+    silent! unmap O
+endfunction
+
+function LoadKeyboard()
+   let keys = $keyboard
+   if (keys == "workman")
+       call Keyboard("workman")
+   elseif (keys == "qwerty")
+       call Keyboard("qwerty")
+   else
+       call Keyboard("dvorak")
+   endif
+endfunction
+
+autocmd VimEnter * call LoadKeyboard()
+
+:noremap <Leader>q :call Keyboard("qwerty")<CR>:echom "Qwerty Keyboard Layout"<CR>
+:noremap <Leader>w :call Keyboard("workman")<CR>:echom "Workman Keyboard Layout"<CR>
