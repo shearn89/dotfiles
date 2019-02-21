@@ -1,4 +1,4 @@
 ---
-- hosts: test
+- hosts: remote
   roles:
     - laptop

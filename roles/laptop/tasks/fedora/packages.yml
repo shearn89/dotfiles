@@ -1,0 +1,90 @@
+---
+  - name: install essential base Fedora packages
+    become: True
+    package:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - "@base-x"
+      - "@virtualization"
+      - gdm 
+      - gnome-shell
+      - libfm-gtk
+      - git
+      - tree
+      - jq
+      - curl
+      - python3
+      - python2
+      - wget
+      - tar
+      - xz
+      - pigz
+      - tmux
+      - dnf-plugins-core
+      - libselinux-python
+      - flatpak
+      - python2-neovim
+      - python3-neovim
+      - neovim
+      - feh
+      - adobe-source-code-pro-fonts
+      # - ruby
+      # - rubygems
+      # - nodejs-lts-carbon
+      # - npm
+      # - xclip
+      # - xsel
+      # - dmenu
+      # - compton
+      # - lightdm
+
+  - name: Add Docker Fedora Repo
+    become: True
+    shell: "dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo"
+    args:
+      creates: /etc/yum.repos.d/docker-ce.repo
+      warn: False
+
+  - name: Add Puppet 5 Fedora Repo
+    become: True
+    dnf:
+      name: https://yum.puppet.com/puppet5/puppet5-release-fedora-29.noarch.rpm
+      state: present
+
+  - name: Add the flathub repo to Flatpak
+    become: True
+    flatpak_remote:
+      name: flathub
+      state: present
+      flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+
+  - name: install non-standard Fedora packages
+    action: >
+      {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
+    with_items:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - puppet-agent
+      - puppet-lint
+
+  - name: Install Flatpaks
+    flatpak:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - com.github.calo001.fondo
+      - com.spotify.Client
+      - org.gimp.GIMP
+      - org.inkscape.Inkscape
+      - com.getpostman.Postman
+      - org.filezillaproject.Filezilla
+      - org.libreoffice.LibreOffice
+      - org.videolan.VLC
+      - org.fedoraproject.MediaWriter
+      - org.remmina.Remmina
+      - com.visualstudio.code
+      - im.riot.Riot
+      - com.discordapp.Discord
+      - com.valvesoftware.Steam

@@ -14,9 +14,17 @@
 - name: set up rvm
   become: True
   import_role: 
-    role: rvm_io.ruby
+    role: rvm.ruby
   vars:
-    rvm1_rubies: ['ruby-2.1.10']
+    rvm1_rubies: ['ruby-2.1.10', 'ruby-2.4.5']
     rvm1_install_flags: ''
     rvm1_install_path: '/usr/local/rvm'
     rvm1_user: 'root'
+
+- name: Set GUI as default
+  become: True
+  shell: systemctl set-default graphical.target
+  
+- name: Switch to GUI
+  become: True
+  shell: systemctl isolate graphical.target
