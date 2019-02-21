@@ -1,15 +1,23 @@
 ---
 - name: install packages
   import_tasks: packages.yml
+  tags:
+    - packages
 
 - name: set up dotfiles
   import_tasks: files.yml
+  tags:
+    - dotfiles
 
 - name: set up vim
   import_tasks: vim.yml
+  tags:
+    - vim
 
 - name: clone repos
   import_tasks: repos.yml
+  tags:
+    - gitrepos
 
 - name: set up rvm
   become: True
@@ -20,11 +28,10 @@
     rvm1_install_flags: ''
     rvm1_install_path: '/usr/local/rvm'
     rvm1_user: 'root'
+  tags:
+    - rvm
 
-- name: Set GUI as default
-  become: True
-  shell: systemctl set-default graphical.target
-  
-- name: Switch to GUI
-  become: True
-  shell: systemctl isolate graphical.target
+- name: Enable gui
+  import_tasks: gui.yml
+  tags:
+    - gui

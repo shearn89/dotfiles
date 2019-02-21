@@ -29,14 +29,14 @@
 - name: install nvim plugins
   command: "nvim --headless +'PlugInstall' +qa"
 
-- name: install neovim node provider
-  become: True
-  npm:
-    name: neovim
-    global: yes
+  # - name: install neovim node provider
+  #   become: True
+  #   npm:
+  #     name: neovim
+  #     global: yes
 
-- name: install neovim ruby provider
-  gem:
-    name: neovim
-    state: present
-
+  # - name: install neovim ruby provider
+  #   gem:
+  #     name: neovim
+  #     state: present
+  # 

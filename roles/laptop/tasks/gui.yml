@@ -1,0 +1,8 @@
+---
+  - name: Set GUI as default
+    become: True
+    shell: systemctl set-default graphical.target
+    
+  - name: Switch to GUI
+    become: True
+    shell: systemctl isolate graphical.target

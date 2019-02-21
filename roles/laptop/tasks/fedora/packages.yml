@@ -1,43 +1,43 @@
 ---
   - name: install essential base Fedora packages
     become: True
-    package:
-      name: "{{ item }}"
+    dnf:
       state: present
-    with_items:
-      - "@base-x"
-      - "@virtualization"
-      - gdm 
-      - gnome-shell
-      - libfm-gtk
-      - git
-      - tree
-      - jq
-      - curl
-      - python3
-      - python2
-      - wget
-      - tar
-      - xz
-      - pigz
-      - tmux
-      - dnf-plugins-core
-      - libselinux-python
-      - flatpak
-      - python2-neovim
-      - python3-neovim
-      - neovim
-      - feh
-      - adobe-source-code-pro-fonts
-      # - ruby
-      # - rubygems
-      # - nodejs-lts-carbon
-      # - npm
-      # - xclip
-      # - xsel
-      # - dmenu
-      # - compton
-      # - lightdm
+      name:
+        - "@base-x"
+        - "@virtualization"
+        - gdm 
+        - gnome-shell
+        - libfm-gtk
+        - git
+        - tree
+        - jq
+        - curl
+        - python3
+        - python2
+        - wget
+        - tar
+        - xz
+        - pigz
+        - tmux
+        - dnf-plugins-core
+        - libselinux-python
+        - flatpak
+        - python2-neovim
+        - python3-neovim
+        - neovim
+        - feh
+        - adobe-source-code-pro-fonts
+        - gpg
+        # - ruby
+        # - rubygems
+        # - nodejs-lts-carbon
+        # - npm
+        # - xclip
+        # - xsel
+        # - dmenu
+        # - compton
+        # - lightdm
 
   - name: Add Docker Fedora Repo
     become: True
@@ -56,20 +56,22 @@
     become: True
     flatpak_remote:
       name: flathub
-      state: present
-      flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+      flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
 
   - name: install non-standard Fedora packages
-    action: >
-      {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
-    with_items:
-      - docker-ce
-      - docker-ce-cli
-      - containerd.io
-      - puppet-agent
-      - puppet-lint
+    become: True
+    dnf:
+      name: 
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+        - puppet-agent
+        # - puppet-lint
+      state: present
+      update_cache: yes
 
   - name: Install Flatpaks
+    become: True
     flatpak:
       name: "{{ item }}"
       state: present
@@ -88,3 +90,5 @@
       - im.riot.Riot
       - com.discordapp.Discord
       - com.valvesoftware.Steam
+    tags:
+      - flatpaks
