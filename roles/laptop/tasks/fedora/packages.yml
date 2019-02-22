@@ -5,6 +5,7 @@
       state: present
       name:
         - "@base-x"
+        - "@gnome"
         - "@virtualization"
         - gdm 
         - gnome-shell
