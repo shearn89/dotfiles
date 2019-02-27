@@ -8,7 +8,7 @@ then
   if [[ $? == 0 ]]
   then
     sudo dnf upgrade -y
-    sudo dnf install python python-pip sshpass
+    sudo dnf install -y python python-pip sshpass
     pip install --user ansible
   else
     sudo yum upgrade -y 
