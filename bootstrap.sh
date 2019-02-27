@@ -26,5 +26,5 @@ else
 fi
 
 echo "Getting ansible roles"
-ansible-galaxy install rvm_io.ruby
+ansible-galaxy install rvm.ruby
 echo "Ansible installed, now run the playbook."

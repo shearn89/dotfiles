@@ -1,4 +1,6 @@
 ---
 - hosts: localhost
+  vars:
+    home: false
   roles:
     - laptop
