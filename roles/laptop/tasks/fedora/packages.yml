@@ -7,38 +7,33 @@
         - "@base-x"
         - "@gnome"
         - "@virtualization"
-        - gdm 
-        - gnome-shell
-        - libfm-gtk
-        - git
-        - tree
-        - jq
-        - curl
-        - python3
-        - python2
-        - wget
-        - tar
-        - xz
-        - pigz
-        - tmux
-        - dnf-plugins-core
-        - libselinux-python
-        - flatpak
-        - python2-neovim
-        - python3-neovim
-        - neovim
-        - feh
         - adobe-source-code-pro-fonts
+        - cinnamon
+        - curl
+        - dnf-plugins-core
+        - feh
+        - firefox
+        - flatpak
+        - gdm 
+        - git
+        - gnome-shell
         - gpg
-        # - ruby
-        # - rubygems
-        # - nodejs-lts-carbon
-        # - npm
-        # - xclip
-        # - xsel
-        # - dmenu
-        # - compton
-        # - lightdm
+        - htop
+        - jq
+        - libfm-gtk
+        - libselinux-python
+        - mlocate
+        - neovim
+        - pigz
+        - python2
+        - python2-neovim
+        - python3
+        - python3-neovim
+        - tar
+        - tmux
+        - tree
+        - wget
+        - xz
 
   - name: Add Docker Fedora Repo
     become: True
@@ -67,7 +62,6 @@
         - docker-ce-cli
         - containerd.io
         - puppet-agent
-        # - puppet-lint
       state: present
       update_cache: yes
 
