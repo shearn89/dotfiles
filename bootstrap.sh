@@ -4,13 +4,16 @@ echo "This will install ansible and update the system. You will be prompted for 
 
 if [[ -f /etc/redhat-release ]]
 then
-  # check for fedora?
-  # sudo dnf upgrade -y
-  # sudo dnf install python python-pip sshpass
-  # pip install --user ansible
-  # RedHat, set up ansible RPM repo
-  sudo yum upgrade -y 
-  sudo yum install -y ansible openssh-server
+  grep Fedora /etc/redhat-release >/dev/null 2>&1
+  if [[ $? == 0 ]]
+  then
+    sudo dnf upgrade -y
+    sudo dnf install python python-pip sshpass
+    pip install --user ansible
+  else
+    sudo yum upgrade -y 
+    sudo yum install -y ansible openssh-server
+  fi
 elif [[ -f /etc/os-release ]]
 then
   sudo pacman -Syu --noconfirm
