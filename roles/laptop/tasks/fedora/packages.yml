@@ -50,6 +50,7 @@
 
   - name: Add the flathub repo to Flatpak
     become: True
+    when: home | bool
     flatpak_remote:
       name: flathub
       flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
@@ -67,21 +68,13 @@
 
   - name: Install Flatpaks
     become: True
+    when: home | bool
     flatpak:
       name: "{{ item }}"
       state: present
     with_items:
-      - com.github.calo001.fondo
       - com.spotify.Client
-      - org.gimp.GIMP
-      - org.inkscape.Inkscape
-      - com.getpostman.Postman
-      - org.filezillaproject.Filezilla
-      - org.libreoffice.LibreOffice
       - org.videolan.VLC
-      - org.fedoraproject.MediaWriter
-      - org.remmina.Remmina
-      - com.visualstudio.code
       - im.riot.Riot
       - com.discordapp.Discord
       - com.valvesoftware.Steam
