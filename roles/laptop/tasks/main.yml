@@ -24,7 +24,7 @@
   import_role: 
     role: rvm.ruby
   vars:
-    rvm1_rubies: ['ruby-2.1.10', 'ruby-2.4.5']
+    rvm1_rubies: ['ruby-2.4.5']
     rvm1_install_flags: ''
     rvm1_install_path: '/usr/local/rvm'
     rvm1_user: 'root'
