@@ -1,5 +1,6 @@
 ---
   - name: Install common packages
+    become: True
     package:
       name:
         - adobe-source-code-pro-fonts
