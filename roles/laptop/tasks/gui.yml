@@ -1,8 +1,14 @@
 ---
+  - name: Get systemd default target
+    shell: systemctl get-default
+    register: systemd_default
+
   - name: Set GUI as default
     become: True
     shell: systemctl set-default graphical.target
+    when: systemd_default.stdout != "graphical.target"
     
   - name: Switch to GUI
     become: True
     shell: systemctl isolate graphical.target
+    when: systemd_default.stdout != "graphical.target"
