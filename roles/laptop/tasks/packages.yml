@@ -25,6 +25,7 @@
         - tree
         - wget
         - xz
+        - zsh
       state: present
   
   - import_tasks: tasks/ubuntu/packages.yml

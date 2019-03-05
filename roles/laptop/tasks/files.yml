@@ -5,12 +5,14 @@
     dest: "{{ item.dest }}"
   with_items:
     - { src: 'bashrc', dest: '~/.bashrc' }
+    - { src: 'zshrc', dest: '~/.zshrc' }
     - { src: 'bash_aliases', dest: '~/.bash_aliases' }
     - { src: 'profile', dest: '~/.profile' }
     - { src: 'gemrc', dest: '~/.gemrc' }
     - { src: 'tmux.conf', dest: '~/.tmux.conf' }
     - { src: 'xinitrc', dest: '~/.xinitrc' }
     - { src: 'Xmodmap', dest: '~/.Xmodmap' }
+    - { src: 'install-omz.sh', dest: '~/install-omz.sh' }
     - { src: 'vscode-extensions', dest: '~/vscode-extensions' }
 
 - name: remove bash_profile
