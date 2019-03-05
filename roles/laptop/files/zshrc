@@ -11,3 +11,38 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+
+alias vim='vim -p '
+
+alias ber='bundle exec rake'
+alias bert='bundle exec rake test'
+alias bip='bundle install --path=vendor/bundle'
+
+alias feh='feh --auto-rotate -P '
+alias show_photos='feh -. --auto-rotate -F -B black -P -Y ./'
+
+cdt() {
+  directory=$(git rev-parse --show-cdup --no-revs HEAD)
+  if [ ! -z $directory ]
+  then
+    cd $directory
+  fi
+}
+
+garc() {
+  directory=$(git rev-parse --show-cdup --no-revs HEAD)
+  if [ -z $directory ]
+  then
+    directory=$(basename $(pwd))
+  else
+    cd $directory
+  fi
+  name=$(basename $directory)
+  describe=$(git describe --tags 2>/dev/null || git rev-parse --short HEAD)
+  git archive --prefix=$name/ -o $name-$describe.tar.gz HEAD ./
+}
+
+burndisk() {
+  sudo wodim -eject -tao speed=2 dev=/dev/sr0 -v -data $1
+}
+
