@@ -27,6 +27,7 @@
         - wget
         - xz
         - zsh
+        - rsync
       state: present
   
   - import_tasks: tasks/ubuntu/packages.yml
