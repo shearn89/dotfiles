@@ -1,16 +1,22 @@
 export ZSH="/home/user100/.oh-my-zsh"
-ZSH_THEME="agnoster"
-
-plugins=(
-  git
-  docker
-  dotenv
-  vi-mode
-  zsh-syntax-highlighting
-  zsh-autosuggestions
-)
-
 source $ZSH/oh-my-zsh.sh
+
+source ~/.config/antigen.zsh
+
+antigen use oh-my-zsh
+
+antigen bundle 
+antigen bundle git
+antigen bundle docker
+antigen bundle dotenv
+antigen bundle vi-mode
+antigen bundle autojump
+
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-autosuggestions
+
+antigen theme agnoster
+antigen apply
 
 alias vim='vim -p '
 
