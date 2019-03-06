@@ -4,6 +4,7 @@
     package:
       name:
         - adobe-source-code-pro-fonts
+        - autojump
         - bash-completion
         - curl
         - dmenu
