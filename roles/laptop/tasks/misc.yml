@@ -7,9 +7,11 @@
 
 - name: install omzsh
   shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  args:
+    creates: "~/.oh-my-zsh"
   timeout: 300
-  creates: "~/.oh-my-zsh"
 
 - name: restore zshrc
   shell: mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc
-  removes: ~/.zshrc.pre-oh-my-zsh
+  args:
+    removes: ~/.zshrc.pre-oh-my-zsh
