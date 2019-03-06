@@ -17,6 +17,7 @@
         - neovim
         - python2
         - python2-neovim
+        - util-linux-user
 
   - name: Add Docker Fedora Repo
     become: True
