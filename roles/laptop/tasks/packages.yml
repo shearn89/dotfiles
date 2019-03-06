@@ -28,6 +28,8 @@
         - xz
         - zsh
         - rsync
+        - crontabs
+        - logrotate
       state: present
   
   - import_tasks: tasks/ubuntu/packages.yml
