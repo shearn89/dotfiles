@@ -12,7 +12,6 @@
     - { src: 'tmux.conf', dest: '~/.tmux.conf' }
     - { src: 'xinitrc', dest: '~/.xinitrc' }
     - { src: 'Xmodmap', dest: '~/.Xmodmap' }
-    - { src: 'install-omz.sh', dest: '~/install-omz.sh' }
     - { src: 'vscode-extensions', dest: '~/vscode-extensions' }
 
 - name: remove bash_profile

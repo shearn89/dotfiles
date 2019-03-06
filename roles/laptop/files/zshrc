@@ -18,7 +18,7 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen theme agnoster
 antigen apply
 
-alias vim='vim -p '
+alias vim='nvim -p '
 
 alias ber='bundle exec rake'
 alias bert='bundle exec rake test'
