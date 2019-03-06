@@ -19,6 +19,11 @@
   tags:
     - gitrepos
 
+- name: include misc stuff
+  import_tasks: misc.yml
+  tags:
+    - misc
+
 - name: set up rvm
   become: True
   import_role: 
