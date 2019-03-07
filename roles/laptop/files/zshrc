@@ -49,6 +49,7 @@ setopt HIST_SAVE_NO_DUPS
 # Misc options
 export KEYTIMEOUT=1
 export EDITOR=nvim
+export PAGER=more
 
 # aliases
 if [[ -f /usr/bin/nvim ]]
