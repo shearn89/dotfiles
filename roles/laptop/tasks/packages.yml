@@ -30,6 +30,7 @@
         - rsync
         - crontabs
         - logrotate
+        - pv
       state: present
   
   - import_tasks: tasks/ubuntu/packages.yml
