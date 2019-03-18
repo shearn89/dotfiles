@@ -10,7 +10,7 @@ esac
 
 shopt -s histappend
 shopt -s checkwinsize
-shopt -s extglob
+# shopt -s extglob ## conflicts with "git reset HEAD^"
 shopt -s globstar
 shopt -s autocd
 
