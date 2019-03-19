@@ -31,6 +31,7 @@
         - crontabs
         - logrotate
         - pv
+        - unzip
       state: present
   
   - import_tasks: tasks/ubuntu/packages.yml
