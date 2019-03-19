@@ -24,6 +24,11 @@
   tags:
     - misc
 
+- name: include fonts
+  import_tasks: fonts.yml
+  tags:
+    - fonts
+
 - name: set up rvm
   become: True
   import_role: 
