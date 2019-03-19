@@ -1,0 +1,12 @@
+[media-keys]
+terminal=['<Primary><Alt>t', '<Super>Return', '<Super>2']
+www=['XF86WWW', '<Super>1']
+volume-down=['XF86AudioLowerVolume', '<Shift><Super>s']
+home=['<Super>e', 'XF86Explorer', '<Super>3']
+volume-up=['XF86AudioRaiseVolume', '<Shift><Super>w']
+
+[wm]
+push-tile-down=@as []
+maximize=['<Super>Up']
+unmaximize=['<Alt>F5', '<Super>Down']
+push-tile-up=@as []
