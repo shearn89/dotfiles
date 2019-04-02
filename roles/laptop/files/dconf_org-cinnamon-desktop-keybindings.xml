@@ -1,9 +1,14 @@
+[/]
+looking-glass-keybinding=@as []
+
 [media-keys]
+volume-up=['XF86AudioRaiseVolume', '<Shift><Super>w']
 terminal=['<Primary><Alt>t', '<Super>Return', '<Super>2']
 www=['XF86WWW', '<Super>1']
 volume-down=['XF86AudioLowerVolume', '<Shift><Super>s']
+screensaver=['<Control><Alt>l', 'XF86ScreenSaver', '<Super>l']
 home=['<Super>e', 'XF86Explorer', '<Super>3']
-volume-up=['XF86AudioRaiseVolume', '<Shift><Super>w']
+pause=['XF86AudioPause', '<Super>space']
 
 [wm]
 push-tile-down=@as []
