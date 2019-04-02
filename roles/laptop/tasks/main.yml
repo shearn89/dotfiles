@@ -41,6 +41,11 @@
   tags:
     - rvm
 
+- name: load dconf
+  import_tasks: dconf.yml
+  tags:
+    - dconf
+
 - name: Enable gui
   import_tasks: gui.yml
   tags:

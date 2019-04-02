@@ -1,0 +1,14 @@
+---
+- name: copy dconf files into place
+  copy:
+    src: "files/{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - { src: 'dconf_org-cinnamon-desktop-keybindings.xml', dest: '~/dconf_org-cinnamon-desktop-keybindings.xml' }
+    - { src: 'dconf_org-gnome-terminal-legacy-profiles.xml', dest: '~/dconf_org-gnome-terminal-legacy-profiles.xml' }
+
+- name: Load dconf cinnamon settings
+  shell: "dconf load /org/cinnamon/desktop/keybindings/ < ~/dconf_org-cinnamon-desktop-keybindings.xml"
+
+- name: Load dconf terminal settings
+  shell: "dconf load /org/gnome/terminal/legacy/profiles:/ < ~/dconf_org-gnome-terminal-legacy-profiles.xml"
