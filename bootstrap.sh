@@ -1,6 +1,9 @@
 #!/bin/bash
 
-echo "This will install ansible and update the system. You will be prompted for a password."
+echo "This script requires you to set up your user account with NOPASSWD sudo access."
+echo "Exit now if this needs doing... You have 30 seconds to ctrl-c."
+sleep 30
+echo "This will install ansible and configure the system. You may be prompted for a password."
 
 if [[ -f /etc/redhat-release ]]
 then
