@@ -1,7 +1,7 @@
 ---
 - name: Download font files
   get_url:
-    url: {{ item.url }}
+    url: "{{ item }}"
     dest: "~/.local/share/fonts/"
     mode: 0644
   with_items:
