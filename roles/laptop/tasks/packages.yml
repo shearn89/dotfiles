@@ -33,6 +33,7 @@
         - pv
         - unzip
         - direnv
+        - elvish
       state: present
   
   - import_tasks: tasks/ubuntu/packages.yml
