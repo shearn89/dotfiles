@@ -1,51 +1,31 @@
-alias ls='ls --color=auto'
-alias ll='ls -l'
+# aliases
+alias vim='nvim -p '
 
-alias gst='git status '
-alias gc='git commit '
-alias gl='git pull '
-alias gp='git push '
-alias ga='git add '
-alias gfa='git fetch --all '
+alias ber='bundle exec rake'
+alias bert='bundle exec rake test'
+alias bip='bundle install --path=vendor/bundle'
+alias docker='podman '
 
-if [[ -f /usr/bin/nvim ]]
-then
-  alias vim='nvim -p '
-else 
-  alias vim='vim -p '
-fi
+alias isodate='date +"%Y-%m-%dT%H:%M:%S%z"'
 
-alias sizes='du -sh * | sort --human-numeric'
+alias tf='terraform '
 
-alias bert='bundle exec rake test '
-alias bip='bundle install --path=vendor/bundle '
+alias superlint='docker run -e RUN_LOCAL=true -v $(pwd):/tmp/lint github/super-linter'
 
-alias feh='feh --auto-rotate -P '
-alias show_photos='feh -. --auto-rotate -F -B black -P -Y ./'
+alias aws-unassume='unset AWS_PROFILE AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN AWS_DEFAULT_REGION'
+alias 1p-signin='eval $(op signin my)'
 
-function findextgrep () {
-  if [[ -z $1 ]]
+
+# Functions
+cdt() {
+  directory=$(git rev-parse --show-cdup --no-revs HEAD)
+  if [ ! -z $directory ]
   then
-    echo 'must provide search path'
-    return 1
+    cd $directory
   fi
-
-  if [[ -z $2 ]]
-  then
-    echo 'must provide extension'
-    return 1
-  fi
-
-  if [[ -z $3 ]]
-  then
-    echo 'must provide search string'
-    return 1
-  fi
-
-  find $1 -iname "${2}" -exec grep -H -i $3 {} \;
 }
 
-gr () {
+garc() {
   directory=$(git rev-parse --show-cdup --no-revs HEAD)
   if [ -z $directory ]
   then
@@ -58,14 +38,51 @@ gr () {
   git archive --prefix=$name/ -o $name-$describe.tar.gz HEAD ./
 }
 
-cdt (){
-  directory=$(git rev-parse --show-cdup --no-revs HEAD)
-  if [ ! -z $directory ]
-  then
-    cd $directory
-  fi
+# search AMIs
+find_ami() {
+  aws ec2 describe-images --owners amazon --filters "Name=architecture,Values=x86_64" "Name=is-public,Values=true" --query 'Images[*].[Description,Name,ImageId]'
 }
 
-burndisk () {
-  sudo wodim -eject -tao speed=2 dev=/dev/sr0 -v -data $1
+get_latest_aws_ami() {
+  # aws ec2 describe-images --owners amazon --filters "Name=name,Values=amzn*" --query 'sort_by(Images, &CreationDate)[].Name'
+  aws ssm get-parameters --names "/aws/service/ami-amazon-linux-latest/amzn2-ami-kernel-5.10-hvm-x86_64-gp2" --query "Parameters[*].Value" --output text
+}
+
+expose_podman_socket() {
+  if [[ -S /tmp/podman.sock ]]
+  then
+    echo 'socket exists, cleaning up'
+    # kill $(ps -ef | grep [c]ore@localhost | awk {'print $2'})
+    rm -f /tmp/podman.sock
+  fi
+  echo 'creating socket'
+  ssh -i ~/.ssh/podman-machine-default -p $(ps -ef | grep -i [g]vproxy | sed 's/.*ssh-port //') -L'/tmp/podman.sock:/run/user/1000/podman/podman.sock' -N core@localhost &
+  # podman machine ssh -L '/tmp/podman.sock:/run/user/1000/podman/podman.sock' -N &
+  export DOCKER_HOST=unix:///tmp/podman.sock
+  echo 'DOCKER_HOST set'
+}
+
+update-p9k-theme() {
+  typeset -g POWERLEVEL9K_COLOR_SCHEME="$(dark-notify -e)"
+}
+
+assume-role() {
+  if [[ -z $1 ]]
+  then
+    target="USERID@amazon.com"
+  else
+    target=$1
+  fi
+  op_data=$(op get item $target)
+  role=$(echo $op_data | jq -r '.details.sections[] | select(.fields).fields[] | select(.t=="role").v')
+  session_name=$(echo $op_data | jq -r '.details.sections[] | select(.fields).fields[] | select(.t=="session-name").v')
+  serial=$(echo $op_data | jq -r '.details.sections[] | select(.fields).fields[] | select(.t=="mfa-serial").v')
+
+  sts_data=$(aws --profile=personal sts assume-role --role-arn ${role} --role-session-name ${session_name} --serial-number ${serial} --token-code $(op get totp shearna@amazon.com))
+  export AWS_PROFILE=$(echo $sts_data | jq -r '.AssumedRoleUser.AssumedRoleId' | awk -F: {'print $2'})
+  export AWS_ACCESS_KEY_ID=$(echo $sts_data | jq -r '.Credentials.AccessKeyId')
+  export AWS_SECRET_ACCESS_KEY=$(echo $sts_data | jq -r '.Credentials.SecretAccessKey')
+  export AWS_SESSION_TOKEN=$(echo $sts_data | jq -r '.Credentials.SessionToken')
+  export AWS_DEFAULT_REGION="eu-west-1"
+  unset op_data role session_name serial sts_data
 }
