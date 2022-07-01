@@ -10,7 +10,7 @@
 
 - name: create nvim config
   copy:
-    src: "files/vimrc"
+    src: "files/init.vim"
     dest: "~/.config/nvim/init.vim"
 
 - name: set symlink for neovim config
