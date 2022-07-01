@@ -4,7 +4,6 @@ alias vim='nvim -p '
 alias ber='bundle exec rake'
 alias bert='bundle exec rake test'
 alias bip='bundle install --path=vendor/bundle'
-alias docker='podman '
 
 alias isodate='date +"%Y-%m-%dT%H:%M:%S%z"'
 
@@ -14,6 +13,8 @@ alias superlint='docker run -e RUN_LOCAL=true -v $(pwd):/tmp/lint github/super-l
 
 alias aws-unassume='unset AWS_PROFILE AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN AWS_DEFAULT_REGION'
 alias 1p-signin='eval $(op signin my)'
+
+alias sb='sam build -p -c'
 
 
 # Functions
@@ -69,7 +70,7 @@ update-p9k-theme() {
 assume-role() {
   if [[ -z $1 ]]
   then
-    target="USERID@amazon.com"
+    target="alex@shearn89.com"
   else
     target=$1
   fi
@@ -78,11 +79,15 @@ assume-role() {
   session_name=$(echo $op_data | jq -r '.details.sections[] | select(.fields).fields[] | select(.t=="session-name").v')
   serial=$(echo $op_data | jq -r '.details.sections[] | select(.fields).fields[] | select(.t=="mfa-serial").v')
 
-  sts_data=$(aws --profile=personal sts assume-role --role-arn ${role} --role-session-name ${session_name} --serial-number ${serial} --token-code $(op get totp shearna@amazon.com))
+  sts_data=$(aws --profile=personal sts assume-role --role-arn ${role} --role-session-name ${session_name} --serial-number ${serial} --token-code $(op get totp ${target}))
   export AWS_PROFILE=$(echo $sts_data | jq -r '.AssumedRoleUser.AssumedRoleId' | awk -F: {'print $2'})
   export AWS_ACCESS_KEY_ID=$(echo $sts_data | jq -r '.Credentials.AccessKeyId')
   export AWS_SECRET_ACCESS_KEY=$(echo $sts_data | jq -r '.Credentials.SecretAccessKey')
   export AWS_SESSION_TOKEN=$(echo $sts_data | jq -r '.Credentials.SessionToken')
   export AWS_DEFAULT_REGION="eu-west-1"
   unset op_data role session_name serial sts_data
+}
+
+decode_b64() {
+  base64 -d -i $1 -o $1.wav
 }

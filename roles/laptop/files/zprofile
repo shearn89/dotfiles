@@ -1,0 +1,12 @@
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+alias ls='ls -G '
+alias ll='ls -l '
+alias gst='git status '
+alias gc='git commit '
+alias gl='git pull '
+alias gp='git push '
+alias ga='git add '
+
+eval "$(pyenv init --path)"
+export JAVA_TOOLS_OPTIONS="-Dlog4j2.formatMsgNoLookups=true"

@@ -1,5 +1,13 @@
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="/Users/ajshearn/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 source ~/.config/antigen.zsh
 
 # Antigen stuff
@@ -15,7 +23,7 @@ antigen bundle git
 antigen bundle gitignore
 antigen bundle httpie
 antigen bundle macos
-antigen bundle magic-enter
+# antigen bundle magic-enter
 antigen bundle mosh
 antigen bundle nmap
 antigen bundle pip
@@ -39,8 +47,6 @@ antigen theme romkatv/powerlevel10k
 
 # THEME STUFF
 POWERLEVEL9K_COLOR_SCHEME="$(dark-notify -e)"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vi_mode context dir dir_writable vcs aws virtualenv)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status ssh root_indicator background_jobs history time)
 POWERLEVEL9K_VI_INSERT_MODE_STRING="\uf80b"
 POWERLEVEL9K_VI_COMMAND_MODE_STRING="\uf80f"
 POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=$'\uE0b4'
@@ -48,6 +54,25 @@ POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=$'\uE0b5'
 POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=$'\uE0b6'
 POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR=$'\uE0b7'
 POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='red'
+# POWERLEVEL9K_AWS_SHOW_ON_COMMAND='aws|terraform'
+# POWERLEVEL9K_AWS_SHOW_ON_COMMAND='aws|awless|terraform|pulumi'
+# shorten long directory lists
+POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique
+POWERLEVEL9K_SHORTEN_DELIMITER=
+POWERLEVEL9K_DIR_ANCHOR_BOLD=true
+# transient prompt in same directory, saves space
+POWERLEVEL9K_TRANSIENT_PROMPT=same-dir
+# set up multi-line prompt
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_RPROMPT_ON_NEWLINE=false
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vi_mode context dir dir_writable vcs aws virtualenv)
+# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vi_mode context dir dir_writable vcs aws virtualenv nvm)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status ssh root_indicator background_jobs history time)
+POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+
+# MAGIC_ENTER_OTHER_COMMAND=''
+
+
 antigen apply
 
 # HISTORY STUFF
@@ -68,22 +93,28 @@ setopt NO_NOMATCH
 export KEYTIMEOUT=1
 export EDITOR=nvim
 export JAVA_TOOLS_OPTIONS="-Dlog4j2.formatMsgNoLookups=true"
+export JAVA_HOME=$(/usr/libexec/java_home)
 export PAGER='less -FRX'
 
+eval "$(pyenv init -)"
 
 # Auto complete aws cli
 autoload -Uz compinit
 compinit
 autoload bashcompinit && bashcompinit
+complete -C /opt/homebrew/bin/aws_completer aws
 
-if [[ -f /opt/homebrew/bin/aws_complete ]]
-then
-  complete -C /opt/homebrew/bin/aws_completer aws
-fi
+# export GPG_TTY=$(tty)
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
 
-eval "$(pyenv init -)"
+export PATH=$PATH:~/.toolbox/bin:~/go/bin:~/.local/bin
+export SAM_CLI_BETA_MAVEN_SCOPE_AND_LAYER=1
+export AWS_CLI_AUTO_PROMPT=on-partial
+export SAM_CLI_TELEMETRY=0
+
 eval "$(op completion zsh)"
 
-# bindkey -v
+bindkey -v
 
 source ~/.bash_aliases
