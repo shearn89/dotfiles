@@ -5,6 +5,7 @@
 	name = shearna
 [push]
 	default = current
+        autoSetupRemote = true
 [alias]
 	slog = log --pretty=oneline --abbrev=commit
 [merge]
