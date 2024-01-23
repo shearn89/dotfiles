@@ -1,48 +1,7 @@
 ---
-  - name: install homebrew packages
-    package:
-      name: "{{ item }}"
-      state: present
-    with_items:
-      - autojump
-      - aws-cdk
-      - aws-iam-authenticator
-      - aws-sam-cli
-      - awscli
-      - cfn-lint
-      - cmake
-      - curl
-      - dark-notify
-      - docker
-      - docker-compose
-      - eksctl
-      - gh
-      - git-secrets
-      - go
-      - helm
-      - htop
-      - httpie
-      - hugo
-      - imagemagick
-      - jq
-      - kubernetes-cli
-      - neovim
-      - nvm
-      - parallel
-      - pigz
-      - pinentry
-      - pinentry-mac
-      - podman
-      - pyenv
-      - pyenv-virtualenv
-      - qrencode
-      - rsync
-      - rust
-      - sqlite
-      - terminal-notifier
-      - terraform
-      - tmux
-      - tree
-      - virtualenv
-      - wget
-      - xz
+  - name: Copy Brewfile into place
+    copy:
+      src: "files/Brewfile"
+      dest: "~/.Brewfile"
+  - name: Install from brewfile
+    run: brew bundle --global
