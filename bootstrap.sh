@@ -23,7 +23,9 @@ then
   sudo pacman -Sy --noconfirm python ansible openssh git
 elif [[ $(uname) == "Darwin" ]]
   # mac
-  pip install --user ansible
+  xcode-select --install
+  python -m pip install --user ansible
+  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else
   # Debian, set up ansible DEB repo
   sudo apt-get update -y
