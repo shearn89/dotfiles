@@ -44,6 +44,7 @@
 
 - name: load dconf
   import_tasks: dconf.yml
+  when: ansible_distribution != "MacOSX"
   tags:
     - dconf
 
@@ -51,3 +52,4 @@
   import_tasks: gui.yml
   tags:
     - gui
+    - never
