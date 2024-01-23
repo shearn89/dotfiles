@@ -21,6 +21,9 @@ elif [[ -f /etc/os-release ]]
 then
   sudo pacman -Syu --noconfirm
   sudo pacman -Sy --noconfirm python ansible openssh git
+elif [[ $(uname) == "Darwin" ]]
+  # mac
+  pip install --user ansible
 else
   # Debian, set up ansible DEB repo
   sudo apt-get update -y

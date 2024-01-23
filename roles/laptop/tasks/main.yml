@@ -40,6 +40,7 @@
     rvm1_user: 'root'
   tags:
     - rvm
+    - never # disable, not using ruby these days
 
 - name: load dconf
   import_tasks: dconf.yml
