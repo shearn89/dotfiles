@@ -91,3 +91,7 @@ assume-role() {
 decode_b64() {
   base64 -d -i $1 -o $1.wav
 }
+
+git_prune() {
+  git branch -v  | grep '\[gone\]' | cut -c3- | awk {'print $1'} | xargs -I {} git branch -d {}
+}

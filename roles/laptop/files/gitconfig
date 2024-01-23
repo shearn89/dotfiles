@@ -4,8 +4,8 @@
 	email = alexander.shearn@gmail.com
 	name = shearna
 [push]
-	default = current
-        autoSetupRemote = true
+	default = simple
+    autoSetupRemote = true
 [alias]
 	slog = log --pretty=oneline --abbrev=commit
 [merge]
@@ -13,4 +13,8 @@
 [fetch]
 	prune = true
 [pull]
-	rebase = true
+	rebase = false
+[init]
+	defaultBranch = main
+[color]
+	ui = auto

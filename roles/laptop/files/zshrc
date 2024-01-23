@@ -14,14 +14,25 @@ source ~/.config/antigen.zsh
 antigen use oh-my-zsh
 
 antigen bundle 1password
+antigen bundle alias-finder
+antigen bundle aliases
 antigen bundle autojump
 antigen bundle battery
+antigen bundle brew
+antigen bundle colored-man-pages
+antigen bundle colorize
 antigen bundle docker
 antigen bundle dotenv
+antigen bundle emoji
+antigen bundle emojiclock
+antigen bundle extract
 antigen bundle gh
 antigen bundle git
+antigen bundle git-auto-fetch
 antigen bundle gitignore
+antigen bundle golang
 antigen bundle httpie
+antigen bundle history
 antigen bundle macos
 # antigen bundle magic-enter
 antigen bundle mosh
@@ -29,13 +40,16 @@ antigen bundle nmap
 antigen bundle pip
 antigen bundle pyenv
 antigen bundle python
+antigen bundle rust
 antigen bundle sudo
 antigen bundle terraform
+antigen bundle thefuck
 antigen bundle vi-mode
 antigen bundle virtualenv
 antigen bundle vscode
 antigen bundle web-search
 
+antigen bundle zsh-navigation-tools
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="underline"
