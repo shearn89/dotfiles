@@ -1,4 +1,9 @@
 ---
+- name: create folders
+  file:
+    path: "~/.local/share/fonts/"
+    state: directory
+
 - name: Download font files
   get_url:
     url: "{{ item }}"
