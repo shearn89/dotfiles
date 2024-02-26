@@ -3,5 +3,6 @@
     copy:
       src: "files/Brewfile"
       dest: "~/.Brewfile"
+
   - name: Install from brewfile
-    run: brew bundle --global
+    command: brew bundle --global

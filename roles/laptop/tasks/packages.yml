@@ -1,6 +1,10 @@
 ---
+  - name: Set sudo flag
+    set_fact:
+      needs_sudo: "{{ ansible_os_family != 'Darwin' }}"
+
   - name: Install common packages
-    become: True
+    become: "{{ needs_sudo }}"
     package:
       name:
         - autojump
@@ -30,7 +34,7 @@
       state: present
       
   - name: Install common linux packages
-    become: True
+    become: "{{ needs_sudo }}"
     package:
       name:
         - adobe-source-code-pro-fonts
@@ -41,6 +45,7 @@
         - tar
         - crontabs
       state: present
+    when: ansible_distribution != 'MacOSX'
 
   - import_tasks: tasks/ubuntu/packages.yml
     become: True
