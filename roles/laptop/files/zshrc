@@ -128,7 +128,10 @@ export AWS_CLI_AUTO_PROMPT=on-partial
 export SAM_CLI_TELEMETRY=0
 
 eval "$(op completion zsh)"
+eval "$(thefuck --alias --enable-experimental-instant-mode)"
 
 bindkey -v
 
 source ~/.bash_aliases
+source ~/.config/op/plugins.sh
+source /opt/homebrew/opt/autoenv/activate.sh
