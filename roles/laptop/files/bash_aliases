@@ -8,6 +8,8 @@ alias bip='bundle install --path=vendor/bundle'
 alias isodate='date +"%Y-%m-%dT%H:%M:%S%z"'
 
 alias tf='terraform '
+alias tfpls='tf plan | landscape; say "terraform plan finished"'
+alias charm='pycharm '
 
 alias superlint='docker run -e RUN_LOCAL=true -v $(pwd):/tmp/lint github/super-linter'
 
@@ -15,6 +17,7 @@ alias aws-unassume='unset AWS_PROFILE AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AW
 alias 1p-signin='eval $(op signin my)'
 
 alias sb='sam build -p -c'
+alias gai='git add -i '
 
 
 # Functions
@@ -93,5 +96,33 @@ decode_b64() {
 }
 
 git_prune() {
-  git branch -v  | grep '\[gone\]' | cut -c3- | awk {'print $1'} | xargs -I {} git branch -d {}
+  git fetch -p && for branch in $(git for-each-ref --format '%(refname) %(upstream:track)' refs/heads | awk '$2 == "[gone]" {sub("refs/heads/", "", $1); print $1}'); do git branch -d $branch; done
 }
+
+
+k8s_debug() {
+  if [[ -z $1 ]]
+  then
+    echo 'must provide context and pod name'
+    return
+  fi
+  if [[ -z $2 ]]
+  then
+    echo 'must provide pod name to debug'
+    return
+  fi
+  kubectl --context=$1 debug $2 -it --image=nicolaka/netshoot
+}
+
+timezsh() {
+  shell=${1-$SHELL}
+  for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
+}
+
+alias kc="kubectl config use-context "
+alias k9s='k9s --readonly '
+alias ksops='kraken aws exec -p $AWS_PROFILE -- sops --input-type yaml --output-type yaml '
+alias k='kubectl '
+unalias gk
+alias ls='eza --git --git-repos'
+alias grep='rg '
