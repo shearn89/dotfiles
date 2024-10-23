@@ -121,8 +121,45 @@ timezsh() {
 
 alias kc="kubectl config use-context "
 alias k9s='k9s --readonly '
-alias ksops='kraken aws exec -p $AWS_PROFILE -- sops --input-type yaml --output-type yaml '
 alias k='kubectl '
-unalias gk
+unalias gk 2>/dev/null
 alias ls='eza --git --git-repos'
 alias grep='rg '
+
+alias tfd='terraform destroy'
+alias tfda='terraform destroy --auto-approve'
+alias tfg='terraform get'
+alias tfi='terraform init'
+alias tfiu='terraform init -upgrade'
+alias tfp='terraform plan -out=tf.plan'
+alias tfa='terraform apply tf.plan'
+alias tfip='terraform init && terraform plan -out=tf.plan '
+alias tfpa='terraform plan -out=tf.plan && terraform apply tf.plan'
+alias tfipa='terraform init && terraform plan -out=tf.plan && terraform apply tf.plan'
+alias tfiupa='terraform init -upgrade && terraform plan -out=tf.plan && terraform apply tf.plan'
+alias tfiup='terraform init -upgrade && terraform plan -out=tf.plan'
+
+tfpta () {
+  TARGETS=""
+  for tgt in $@
+  do
+    TARGETS+="-target=$tgt "
+  done
+  terraform plan -out=tf.plan $TARGETS
+  terraform apply tf.plan
+}
+
+alias dorker='docker'
+
+alias sl='spacectl '
+alias sllp='spacectl stack local-preview --id $(basename $(pwd))'
+alias sl_version='echo -n "0.0.0-pre-$(g rev-parse --short HEAD)" | pbcopy'
+
+alias clear_aws='export AWS_PROFILE=""'
+
+## cool argument alias, e.g. l G -> ls ... | grpe ...
+# alias -g G="| grep --color=auto -P"
+#
+get_default_eks_addon_version() {
+  aws eks describe-addon-versions --kubernetes-version=$1 --query='addons[0].addonVersions[?compatibilities[0].defaultVersion==`true`].addonVersion | [0]' --addon-name $2
+}
