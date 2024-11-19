@@ -138,6 +138,7 @@ alias tfpa='terraform plan -out=tf.plan && terraform apply tf.plan'
 alias tfipa='terraform init && terraform plan -out=tf.plan && terraform apply tf.plan'
 alias tfiupa='terraform init -upgrade && terraform plan -out=tf.plan && terraform apply tf.plan'
 alias tfiup='terraform init -upgrade && terraform plan -out=tf.plan'
+alias tfiv='terraform init -upgrade && terraform validate'
 
 tfpta () {
   TARGETS=""
