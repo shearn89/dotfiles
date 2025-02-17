@@ -14,6 +14,7 @@
     - { src: 'xinitrc', dest: '~/.xinitrc' }
     - { src: 'Xmodmap', dest: '~/.Xmodmap' }
     - { src: 'vscode-extensions', dest: '~/vscode-extensions' }
+    - { src: 'ghosttyrc', dest: '~/Library/Application Support/com.mitchellh.ghostty/config' }
 
 - name: remove bash_profile
   file:

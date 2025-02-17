@@ -1,0 +1,4 @@
+theme = iTerm2 Solarized Dark
+font-family = Inconsolata Regular Regular
+font-size = 16
+keybind = global:cmd+grave_accent=toggle_quick_terminal
