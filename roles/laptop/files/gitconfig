@@ -1,20 +1,17 @@
+[commit]
+	gpgsign = true
+	template = ~/.git_commit_template.txt
 [core]
-	excludesfile = ~/.gitignore_global
-[user]
-	email = alexander.shearn@gmail.com
-	name = shearna
-[push]
-	default = simple
-    autoSetupRemote = true
-[alias]
-	slog = log --pretty=oneline --abbrev=commit
-[merge]
-	ff = false
-[fetch]
-	prune = true
-[pull]
-	rebase = false
+	excludesFile = ~/.gitignore
 [init]
 	defaultBranch = main
-[color]
-	ui = auto
+[push]
+	autoSetupRemote = true
+[rebase]
+	autosquash = true
+[fetch]
+	showForcedUpdates = true
+[url "ssh://git@github.com/"]
+    insteadOf = https://github.com/
+[checkout]
+	workers = 0

@@ -7,6 +7,16 @@ alias gc='git commit '
 alias gl='git pull '
 alias gp='git push '
 alias ga='git add '
+alias gpf='git push --force'
+alias gcu='git commit --fixup '
+alias gcfu='git commit --fixup '
+alias gri='git rebase -i '
 
 eval "$(pyenv init --path)"
 export JAVA_TOOLS_OPTIONS="-Dlog4j2.formatMsgNoLookups=true"
+
+# Added by Toolbox App
+export PATH="$PATH:~/Library/Application Support/JetBrains/Toolbox/scripts"
+
+# 1pass SSH agent
+export SSH_AUTH_SOCK=~/.1password/agent.sock

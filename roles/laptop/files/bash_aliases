@@ -18,7 +18,7 @@ alias 1p-signin='eval $(op signin my)'
 
 alias sb='sam build -p -c'
 alias gai='git add -i '
-
+alias gco='git checkout '
 
 # Functions
 cdt() {
@@ -121,10 +121,25 @@ timezsh() {
 
 alias kc="kubectl config use-context "
 alias k9s='k9s --readonly '
+# alias ksops='kraken aws exec -p $AWS_PROFILE -- sops  '
+alias ksops='kraken cf exec -a $AWS_PROFILE -- sops  '
 alias k='kubectl '
 unalias gk 2>/dev/null
 alias ls='eza --git --git-repos'
 alias grep='rg '
+
+# alias kexec='kraken aws exec -p $AWS_PROFILE -- '
+alias kexec='kraken cf exec -a $AWS_PROFILE -- '
+
+alias ktfd='kexec "terraform destroy"'
+alias ktfi='kexec "terraform init"'
+alias ktfiu='kexec "terraform init -upgrade"'
+alias ktfip='kexec "terraform init && terraform plan -out=tf.plan"'
+alias ktfp='kexec "terraform plan -out=tf.plan"'
+alias ktfa='kexec "terraform apply tf.plan"'
+alias ktfipa='kexec "terraform init && terraform plan -out=tf.plan"'
+alias ktfpa='kexec "terraform plan -out=tf.plan && terraform apply tf.plan"'
+alias ktfipa='kexec "terraform init && terraform plan -out=tf.plan && terraform apply tf.plan"'
 
 alias tfd='terraform destroy'
 alias tfda='terraform destroy --auto-approve'
@@ -163,4 +178,16 @@ alias clear_aws='export AWS_PROFILE=""'
 #
 get_default_eks_addon_version() {
   aws eks describe-addon-versions --kubernetes-version=$1 --query='addons[0].addonVersions[?compatibilities[0].defaultVersion==`true`].addonVersion | [0]' --addon-name $2
+}
+
+
+cleanup_cloudfarer_keychain () {
+        while security delete-generic-password -s "https://keycloak.cloudfarer.ktl.net/realms/cloudfarer/protocol/openid-connect/auth/device" > /dev/null
+        do
+                true
+        done
+}
+
+empty_datadog_sbx_bucket () {
+  aws s3 rm s3://$(aws s3api list-buckets --query "Buckets[?starts_with(Name, 'shearn89-sandbox')].Name" --output text) --recursive
 }
