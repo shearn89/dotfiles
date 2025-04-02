@@ -10,8 +10,6 @@
         - autojump
         - bash-completion
         - curl
-        - dmenu
-        - feh
         - git
         - gpg
         - htop
@@ -19,18 +17,13 @@
         - mosh
         - neovim
         - pigz
-        - python3
-        - tmux
         - tree
         - wget
         - xz
         - zsh
         - rsync
-        - logrotate
         - pv
         - unzip
-        - direnv
-        - elvish
       state: present
       
   - name: Install common linux packages

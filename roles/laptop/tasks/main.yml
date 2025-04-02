@@ -25,13 +25,15 @@
     - misc
 
 - name: include fonts
+  when: ansible_distribution != "MacOSX"
   import_tasks: fonts.yml
   tags:
     - fonts
 
 - name: set up rvm
   become: True
-  import_role: 
+  when: ansible_distribution != "MacOSX"
+  import_role:
     role: rvm.ruby
   vars:
     rvm1_rubies: ['ruby-2.4.5']
@@ -50,6 +52,7 @@
 
 - name: Enable gui
   import_tasks: gui.yml
+  when: ansible_distribution != "MacOSX"
   tags:
     - gui
     - never

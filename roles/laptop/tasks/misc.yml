@@ -1,10 +1,4 @@
 ---
-- name: install antigen for omzsh
-  get_url:
-    url: https://raw.githubusercontent.com/zsh-users/antigen/master/bin/antigen.zsh
-    dest: "~/.config/antigen.zsh"
-    mode: 0644
-
 - name: get omzsh downloader
   get_url:
     url: https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh

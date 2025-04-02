@@ -1,22 +1,38 @@
 ---
-- name: copy files into place
+- name: copy generic files into place
   copy:
     src: "files/{{ item.src }}"
     dest: "{{ item.dest }}"
   with_items:
-    - { src: 'bashrc', dest: '~/.bashrc' }
-    - { src: 'zshrc', dest: '~/.zshrc' }
     - { src: 'bash_aliases', dest: '~/.bash_aliases' }
-    - { src: 'profile', dest: '~/.profile' }
-    - { src: 'zprofile', dest: '~/.zprofile' }
+    - { src: 'bashrc', dest: '~/.bashrc' }
     - { src: 'gemrc', dest: '~/.gemrc' }
+    - { src: 'git_commit_template.txt', dest: '~/.git_commit_template.txt' }
+    - { src: 'gitconfig', dest: '~/.gitconfig' }
+    - { src: 'gitignore_global', dest: '~/.gitignore' }
+    - { src: 'profile', dest: '~/.profile' }
+    - { src: 'vscode-extensions', dest: '~/vscode-extensions' }
+    - { src: 'zprofile', dest: '~/.zprofile' }
+    - { src: 'zsh_plugins.txt', dest: '~/.zsh_plugins.txt' }
+    - { src: 'zshrc', dest: '~/.zshrc' }
+
+- name: copy linux files into place
+  when: ansible_distribution != "MacOSX"
+  copy:
+    src: "files/{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
     - { src: 'tmux.conf', dest: '~/.tmux.conf' }
     - { src: 'xinitrc', dest: '~/.xinitrc' }
     - { src: 'Xmodmap', dest: '~/.Xmodmap' }
-    - { src: 'vscode-extensions', dest: '~/vscode-extensions' }
+
+- name: copy mac files into place
+  when: ansible_distribution == "MacOSX"
+  copy:
+    src: "files/{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
     - { src: 'ghosttyrc', dest: '~/Library/Application Support/com.mitchellh.ghostty/config' }
-    - { src: 'git_commit_template.txt', dest: '~/.git_commit_template.txt' }
-    - { src: 'zsh_plugins.txt', dest: '~/.zsh_plugins.txt' }
 
 - name: remove bash_profile
   file:
