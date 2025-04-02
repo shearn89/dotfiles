@@ -1,3 +1,7 @@
+[user]
+	signingkey = 98F0A67B2E99634F
+	email = alex.shearn@kraken.tech
+	name = Alex Shearn
 [commit]
 	gpgsign = true
 	template = ~/.git_commit_template.txt
@@ -8,7 +12,7 @@
 [push]
 	autoSetupRemote = true
 [rebase]
-	autosquash = true
+	autoSquash = true
 [fetch]
 	showForcedUpdates = true
 [url "ssh://git@github.com/"]

@@ -53,6 +53,7 @@ endfunction
 
 " Basic stuff
 syntax on
+set notermguicolors
 colorscheme solarized
 
 filetype plugin indent on
@@ -90,3 +91,5 @@ nnoremap <C-H> <C-W><C-H>
 "autocmd vimenter * NERDTree
 "autocmd vimenter * wincmd l
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" set textwidth=72
+" set wrap

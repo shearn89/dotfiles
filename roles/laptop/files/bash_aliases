@@ -131,16 +131,6 @@ alias grep='rg '
 # alias kexec='kraken aws exec -p $AWS_PROFILE -- '
 alias kexec='kraken cf exec -a $AWS_PROFILE -- '
 
-alias ktfd='kexec "terraform destroy"'
-alias ktfi='kexec "terraform init"'
-alias ktfiu='kexec "terraform init -upgrade"'
-alias ktfip='kexec "terraform init && terraform plan -out=tf.plan"'
-alias ktfp='kexec "terraform plan -out=tf.plan"'
-alias ktfa='kexec "terraform apply tf.plan"'
-alias ktfipa='kexec "terraform init && terraform plan -out=tf.plan"'
-alias ktfpa='kexec "terraform plan -out=tf.plan && terraform apply tf.plan"'
-alias ktfipa='kexec "terraform init && terraform plan -out=tf.plan && terraform apply tf.plan"'
-
 alias tfd='terraform destroy'
 alias tfda='terraform destroy --auto-approve'
 alias tfg='terraform get'
@@ -154,6 +144,22 @@ alias tfipa='terraform init && terraform plan -out=tf.plan && terraform apply tf
 alias tfiupa='terraform init -upgrade && terraform plan -out=tf.plan && terraform apply tf.plan'
 alias tfiup='terraform init -upgrade && terraform plan -out=tf.plan'
 alias tfiv='terraform init -upgrade && terraform validate'
+alias tfv='terraform validate'
+
+alias tofd='tofu destroy'
+alias tofda='tofu destroy --auto-approve'
+alias tofg='tofu get'
+alias tofi='tofu init'
+alias tofiu='tofu init -upgrade'
+alias tofp='tofu plan -out=tf.plan'
+alias tofa='tofu apply tf.plan'
+alias tofip='tofu init && tofu plan -out=tf.plan '
+alias tofpa='tofu plan -out=tf.plan && tofu apply tf.plan'
+alias tofipa='tofu init && tofu plan -out=tf.plan && tofu apply tf.plan'
+alias tofiupa='tofu init -upgrade && tofu plan -out=tf.plan && tofu apply tf.plan'
+alias tofiup='tofu init -upgrade && tofu plan -out=tf.plan'
+alias tofiv='tofu init -upgrade && tofu validate'
+alias tofv='tofu validate'
 
 tfpta () {
   TARGETS=""
@@ -169,6 +175,7 @@ alias dorker='docker'
 
 alias sl='spacectl '
 alias sllp='spacectl stack local-preview --id $(basename $(pwd))'
+alias spl='spacectl profile login'
 alias sl_version='echo -n "0.0.0-pre-$(g rev-parse --short HEAD)" | pbcopy'
 
 alias clear_aws='export AWS_PROFILE=""'
