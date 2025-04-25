@@ -9,7 +9,7 @@ alias isodate='date +"%Y-%m-%dT%H:%M:%S%z"'
 
 alias tf='terraform '
 alias tfpls='tf plan | landscape; say "terraform plan finished"'
-alias charm='pycharm '
+alias charm='~/Library/Application\ Support/JetBrains/Toolbox/scripts/pycharm'
 
 alias superlint='docker run -e RUN_LOCAL=true -v $(pwd):/tmp/lint github/super-linter'
 
@@ -197,4 +197,13 @@ cleanup_cloudfarer_keychain () {
 
 empty_datadog_sbx_bucket () {
   aws s3 rm s3://$(aws s3api list-buckets --query "Buckets[?starts_with(Name, 'shearn89-sandbox')].Name" --output text) --recursive
+}
+
+kgp () {
+  if [[ -z $1 ]]
+  then
+    echo 'must provide name label'
+    return 1
+  fi
+  kubectl -n application get pods -l app.kubernetes.io/name=$1
 }

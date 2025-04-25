@@ -82,11 +82,6 @@ eval "$(pyenv init -)"
 # export NVM_DIR=~/.nvm
 # source $(brew --prefix nvm)/nvm.sh
 
-export PATH=$PATH:~/.toolbox/bin:~/go/bin:~/.local/bin
-export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
-export PATH="/opt/homebrew/opt/uutils-coreutils/libexec/uubin:$PATH"
-
-
 bindkey -v
 
 source ~/.bash_aliases
@@ -121,3 +116,9 @@ export MISE_PYTHON_UV_VENV_AUTO=true
 eval "$(/opt/homebrew/bin/mise activate zsh)"
 
 export PRE_COMMIT_ALLOW_NO_CONFIG=1
+
+export PATH="$PATH:/Users/alex.shearn/Library/Application\ Support/JetBrains/Toolbox/scripts/"
+export PATH="$PATH:/Users/alex.shearn/.toolbox/bin:/Users/alex.shearn/go/bin:/Users/alex.shearn/.local/bin"
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+export PATH="/opt/homebrew/opt/uutils-coreutils/libexec/uubin:$PATH"
+
