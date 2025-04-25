@@ -111,3 +111,4 @@ set -o vi
 #   [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && { tmux attach || exec tmux new-session && exit;}
 # fi
 
+export OP_ACCOUNT="krakentechnologies-team.1password.com"

@@ -207,3 +207,12 @@ kgp () {
   fi
   kubectl -n application get pods -l app.kubernetes.io/name=$1
 }
+
+cd () {
+  if [[ -z $1 ]]
+  then
+    autoenv_cd ~
+  else
+    autoenv_cd "${@}"
+  fi
+}
